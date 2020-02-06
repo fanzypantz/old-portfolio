@@ -1,8 +1,34 @@
 <template>
   <div>
+    <li v-for="(category, index) in categories" :key="index">
+      <router-link
+        :to="{ name: 'categories-id', params: { id: category.id } }"
+        tag="a"
+        >{{ category.name }}
+      </router-link>
+    </li>
+
     <nuxt />
   </div>
 </template>
+
+<script>
+import categoriesQuery from '~/apollo/queries/category/categories'
+
+export default {
+  data() {
+    return {
+      categories: []
+    }
+  },
+  apollo: {
+    categories: {
+      prefetch: true,
+      query: categoriesQuery
+    }
+  }
+}
+</script>
 
 <style>
 html {
@@ -51,5 +77,10 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+img {
+  width: 500px;
+  height: auto;
 }
 </style>

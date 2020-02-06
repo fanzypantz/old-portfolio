@@ -1,0 +1,12 @@
+query Designs {
+  designs {
+    id
+    project_name
+    images {
+      url
+    }
+    category {
+      name
+    }
+  }
+}

@@ -1,0 +1,11 @@
+query Designs($id: ID!) {
+  design(id: $id) {
+    id
+    project_name
+    content
+    images {
+      url
+    }
+    createdAt
+  }
+}

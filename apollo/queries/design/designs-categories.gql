@@ -1,0 +1,12 @@
+query Category($id: ID!) {
+  category(id: $id) {
+    name
+    designs {
+      id
+      project_name
+      images {
+        url
+      }
+    }
+  }
+}

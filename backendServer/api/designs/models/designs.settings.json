@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "designs",
   "info": {
     "name": "designs"
   },
@@ -8,15 +10,22 @@
   },
   "attributes": {
     "project_name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "images": {
       "collection": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false
+      "required": true
+    },
+    "category": {
+      "via": "designs",
+      "model": "category"
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
     }
-  },
-  "connection": "default",
-  "collectionName": "designs"
+  }
 }
