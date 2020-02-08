@@ -24,19 +24,19 @@
 </template>
 
 <script>
-import designQuery from '~/apollo/queries/design/design'
-const moment = require('moment')
+import designQuery from '~/apollo/queries/design/design';
+const moment = require('moment');
 
 export default {
   data() {
     return {
       design: {}
-    }
+    };
   },
 
   methods: {
     getDateAsText(date) {
-      return moment(date).format('MMM Do YY')
+      return moment(date).format('MMM Do YY');
     }
   },
 
@@ -45,11 +45,11 @@ export default {
       prefetch: true,
       query: designQuery,
       variables() {
-        return { id: this.$route.params.id }
+        return { id: this.$route.params.id };
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

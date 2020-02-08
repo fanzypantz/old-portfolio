@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <Designs :designs="designs"></Designs>
-  </div>
+  <Designs :designs="designs"></Designs>
 </template>
 
 <script>
-import designsQuery from '~/apollo/queries/design/designs'
-import Designs from '~/components/Designs'
+import designsQuery from '~/apollo/queries/design/designs';
+import Designs from '~/components/Designs';
 
 export default {
   components: {
@@ -16,7 +14,7 @@ export default {
   data() {
     return {
       designs: []
-    }
+    };
   },
 
   apollo: {
@@ -24,9 +22,9 @@ export default {
       prefetch: true,
       query: designsQuery,
       variables() {
-        return { id: parseInt(this.$route.params.id) }
+        return { id: parseInt(this.$route.params.id) };
       }
     }
   }
-}
+};
 </script>

@@ -14,8 +14,8 @@
       "unique": true
     },
     "designs": {
-      "collection": "designs",
-      "via": "category"
+      "via": "category",
+      "collection": "designs"
     }
   }
 }

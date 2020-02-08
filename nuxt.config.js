@@ -24,6 +24,10 @@ export default {
    ** Global CSS
    */
   css: [],
+
+  styleResources: {
+    sass: ['~assets/sass/_variables.sass']
+  },
   /*
    ** Plugins to load before mounting the App
    */
@@ -42,7 +46,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/style-resources'
   ],
   /*
    ** Axios module configuration
@@ -72,4 +77,4 @@ export default {
      */
     extend(config, ctx) {}
   }
-}
+};

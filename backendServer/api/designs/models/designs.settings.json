@@ -17,14 +17,24 @@
       "collection": "file",
       "via": "related",
       "plugin": "upload",
-      "required": true
+      "required": false
     },
     "category": {
-      "via": "designs",
-      "model": "category"
+      "model": "category",
+      "via": "designs"
     },
     "content": {
       "type": "richtext",
+      "required": true
+    },
+    "index_image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
       "required": true
     }
   }

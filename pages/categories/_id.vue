@@ -1,18 +1,10 @@
 <template>
-  <div>
-    <div>
-      <div>
-        <h1>{{ category.name }}</h1>
-
-        <Designs :designs="category.designs || []"></Designs>
-      </div>
-    </div>
-  </div>
+  <Designs :designs="category.designs || []"></Designs>
 </template>
 
 <script>
-import designsQuery from '~/apollo/queries/design/designs-categories'
-import Designs from '~/components/Designs'
+import designsQuery from '~/apollo/queries/design/designs-categories';
+import Designs from '~/components/Designs';
 
 export default {
   components: {
@@ -21,17 +13,18 @@ export default {
   data() {
     return {
       category: []
-    }
+    };
   },
 
   apollo: {
     category: {
       prefetch: true,
+
       query: designsQuery,
       variables() {
-        return { id: this.$route.params.id }
+        return { id: this.$route.params.id };
       }
     }
   }
-}
+};
 </script>

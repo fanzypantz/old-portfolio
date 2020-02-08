@@ -1,10 +1,14 @@
-query Designs {
-  designs {
+query {
+  designs (
+    sort: "order"
+  ) {
     id
+    order
     project_name
-    images {
+    index_image {
       url
     }
+    content
     category {
       name
     }
