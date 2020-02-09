@@ -4,9 +4,10 @@ pipeline {
     stage('Init') {
       steps {
         sh '''yarn install
+yarn build
 cd ./backendServer
 yarn install
-yarn build'''
+NODE_ENV=production yarn build'''
       }
     }
 
