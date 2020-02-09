@@ -4,7 +4,7 @@ pipeline {
     stage('Init') {
       steps {
         sh '''yarn install
-cd /backendServer/
+cd /backendServer
 yarn install'''
       }
     }
