@@ -5,7 +5,8 @@ pipeline {
       steps {
         sh '''yarn install
 cd ./backendServer
-yarn install'''
+yarn install
+yarn build'''
       }
     }
 
