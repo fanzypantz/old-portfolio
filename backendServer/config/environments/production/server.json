@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "https://andreas-tollanes.com",
   "port": "${process.env.PORT || 1337}",
   "production": true,
   "proxy": {
