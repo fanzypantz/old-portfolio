@@ -108,12 +108,18 @@ export default {
               this.collapsedElements.push(this.designs[index - 2].id);
               break;
             case 2:
-              this.collapsedElements.push(this.designs[index + 1].id);
+              if (this.designs[index + 1] !== undefined) {
+                this.collapsedElements.push(this.designs[index + 1].id);
+              }
               this.collapsedElements.push(this.designs[index - 1].id);
               break;
             default:
-              this.collapsedElements.push(this.designs[index + 1].id);
-              this.collapsedElements.push(this.designs[index + 2].id);
+              if (this.designs[index + 1] !== undefined) {
+                this.collapsedElements.push(this.designs[index + 1].id);
+              }
+              if (this.designs[index + 2] !== undefined) {
+                this.collapsedElements.push(this.designs[index + 2].id);
+              }
               break;
           }
           this.expanded = elementData.id;
