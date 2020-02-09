@@ -125,6 +125,11 @@ export default {
           this.expanded = elementData.id;
 
           setTimeout(() => {
+            clickedElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'start'
+            });
             const aspectRatio = image.naturalWidth / image.naturalHeight;
             this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
           }, this.timeOut);
@@ -132,19 +137,28 @@ export default {
           this.expanded = elementData.id;
           const aspectRatio = image.naturalWidth / image.naturalHeight;
           this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+          setTimeout(() => {
+            clickedElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'center'
+            });
+          }, this.timeOut);
         }
-
-        // const imageContainer = clickedElement.querySelector(
-        //   '.design-container-image'
-        // );
       } else {
         // If its already open close then call this function again
         // eslint-disable-next-line no-lonely-if
+        const clickedElement = this.$refs['design' + elementData.id][0];
         if (this.expanded === elementData.id) {
           this.designHeight = null;
           setTimeout(() => {
             this.expanded = null;
             this.collapsedElements = [];
+            clickedElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'center'
+            });
           }, this.timeOut);
         } else {
           this.designHeight = null;
