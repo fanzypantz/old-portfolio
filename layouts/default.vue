@@ -34,6 +34,7 @@ export default {
 
 html
   font-family: 'Source Sans Pro'
+  color: $font-colour
   font-size: 16px
   word-spacing: 1px
   -ms-text-size-adjust: 100%

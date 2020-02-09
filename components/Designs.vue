@@ -1,11 +1,17 @@
 <template>
-  <div class="design-container">
+  <transition-group
+    name="fade"
+    enter-active-class="grow"
+    leave-active-class="shrink"
+    class="design-container"
+  >
     <div
       :ref="'design' + design.id"
       v-for="(design, index) in designs"
       v-bind:key="design.id"
       v-bind:class="[
         expanded === design.id ? 'expanded-container' : '',
+        isCollapsed(design.id) ? 'collapsed-container' : '',
         'design-index'
       ]"
       v-bind:style="{
@@ -14,24 +20,32 @@
     >
       <div
         @click="toggleDesignView($event, index)"
-        v-bind:class="[
-          design.expanded ? 'expanded-container-image' : '',
-          'design-container-image'
-        ]"
+        class="design-container-image"
       >
         <img
           @click="(e) => e.preventDefault()"
           :src="'http://localhost:1337' + design.index_image.url"
           alt=""
         />
-        <n-link
-          :to="{ name: 'designs-id', params: { id: design.id } }"
-          class="design-link"
+        <div
+          v-bind:class="[
+            showDescription(design.id) ? 'expanded-description' : '',
+            'design-description'
+          ]"
         >
-        </n-link>
+          <n-link
+            :to="{ name: 'designs-id', params: { id: design.id } }"
+            class="design-link"
+          >
+          </n-link>
+          <div
+            v-html="$md.render(removeLinks(design.content))"
+            class="content"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -43,50 +57,104 @@ export default {
 
   data() {
     return {
-      currentFocus: null,
       designHeight: null,
-      expanded: null
+      expanded: null,
+      collapsedElements: [],
+      timeOut: 500
     };
   },
 
   methods: {
     getHeight(id) {
-      if (this.expanded === id) {
+      if (this.expanded === id && this.designHeight !== null) {
         return this.designHeight + 'px';
       } else {
-        return 'calc((80vw / 3) - 10px)';
+        return '';
       }
+    },
+
+    showDescription(id) {
+      return this.designHeight !== null && this.expanded === id;
+    },
+
+    fixLinks(content) {
+      return content.replace(
+        /!\[text\]\(\/uploads\//g,
+        '![text](http://localhost:1337/uploads/'
+      );
+    },
+
+    removeLinks(content) {
+      return content.replace(/!\[text\]\(\/uploads\/\b[\w-]{32}\b.jpg\)/g, '');
+    },
+
+    isCollapsed(id) {
+      return this.collapsedElements.includes(id);
     },
 
     toggleDesignView(e, index) {
       e.preventDefault();
+      const elementData = this.designs[index];
+      const currentSub = (index + 1) % 4;
       if (this.expanded === null) {
-        const elementData = this.designs[index];
         const clickedElement = this.$refs['design' + elementData.id][0];
         const image = clickedElement.querySelector('IMG');
-        const aspectRatio = image.naturalWidth / image.naturalHeight;
-        this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
-        this.expanded = elementData.id;
+
+        // If its not the third index or the first entry
+        if (currentSub !== 0) {
+          switch (currentSub) {
+            case 3:
+              this.collapsedElements.push(this.designs[index - 1].id);
+              this.collapsedElements.push(this.designs[index - 2].id);
+              break;
+            case 2:
+              this.collapsedElements.push(this.designs[index + 1].id);
+              this.collapsedElements.push(this.designs[index - 1].id);
+              break;
+            default:
+              this.collapsedElements.push(this.designs[index + 1].id);
+              this.collapsedElements.push(this.designs[index + 2].id);
+              break;
+          }
+          this.expanded = elementData.id;
+
+          setTimeout(() => {
+            const aspectRatio = image.naturalWidth / image.naturalHeight;
+            this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+          }, this.timeOut);
+        } else {
+          this.expanded = elementData.id;
+          const aspectRatio = image.naturalWidth / image.naturalHeight;
+          this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+        }
 
         // const imageContainer = clickedElement.querySelector(
         //   '.design-container-image'
         // );
-
-        // If its not the third index or the first entry
-        const currentSub = (index + 1) % 4;
-        if (currentSub !== 0) {
-          switch (currentSub) {
-            case 3:
-              break;
-            case 2:
-              break;
-            default:
-              break;
-          }
-        }
       } else {
-        this.designHeight = null;
-        this.expanded = null;
+        // If its already open close then call this function again
+        // eslint-disable-next-line no-lonely-if
+        if (this.expanded === elementData.id) {
+          this.designHeight = null;
+          setTimeout(() => {
+            this.expanded = null;
+            this.collapsedElements = [];
+          }, this.timeOut);
+        } else {
+          this.designHeight = null;
+          setTimeout(() => {
+            this.expanded = null;
+            this.collapsedElements = [];
+            // Call the function again to open the new one
+            if (currentSub === 0) {
+              setTimeout(() => {
+                this.toggleDesignView(e, index);
+              }, this.timeOut);
+            } else {
+              this.toggleDesignView(e, index);
+            }
+          }, this.timeOut);
+        }
       }
     }
   }
@@ -94,6 +162,8 @@ export default {
 </script>
 
 <style lang="sass">
+$ease-timer: 500ms
+
 .design-container
   display: flex
   flex-wrap: wrap
@@ -106,7 +176,8 @@ export default {
     margin-right: 10px
     width: calc((80vw / 3) - (20px / 3))
     height: calc((80vw / 3) - 10px)
-    transition: width 250ms ease, height 250ms ease
+    opacity: 1
+    transition: width $ease-timer ease, height $ease-timer ease, opacity $ease-timer ease, margin-right $ease-timer ease
 
     &:nth-child(-n+3)
       margin-top: 0
@@ -119,14 +190,36 @@ export default {
       width: 100%
 
     .design-container-image
+      position: relative
       height: 100%
       width: 100%
-      transition: height 250ms ease
 
-    .design-link
+    .design-description
+      width: 100%
+      height: 0
+      justify-content: center
+      align-items: center
+      background-color: rgba(0, 0, 0, 0.50)
+      position: absolute
+      bottom: 0
+      left: 0
       opacity: 0
       pointer-events: none
-      display: none
+      display: flex
+      transition: height $ease-timer ease, opacity $ease-timer ease
+
+      .content
+        font-size: 20px
+        line-height: 20px
+        width: 80%
+        height: 40px
+        overflow: hidden
+
+    .expanded-description
+      opacity: 1
+      max-height: 200px
+      height: 20%
+      pointer-events: all
 
     img
       height: 100%
@@ -136,4 +229,26 @@ export default {
 
   .expanded-container
     width: 100%
+    margin-right: 0
+
+  .collapsed-container
+    opacity: 0
+    width: 0
+    margin-right: 0
+
+  @keyframes fade-out
+    0%
+      width: calc((80vw / 3) - (20px / 3))
+      opacity: 1
+    100%
+      width: 0
+      opacity: 0
+
+  .shrink
+    transform-origin: center
+    animation: fade-out 5000ms ease-in-out normal
+
+  .grow
+    transform-origin: center
+    animation: fade-out 5000ms ease-in-out reverse
 </style>
