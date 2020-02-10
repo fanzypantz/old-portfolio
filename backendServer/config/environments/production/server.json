@@ -4,13 +4,13 @@
   "production": true,
   "proxy": {
     "enabled": true,
-	"ssl": true,
-	"host": "andreas-tollanes.com"
+    "ssl": true,
+    "host": "andreas-tollanes.com"
   },
   "cron": {
     "enabled": false
   },
   "admin": {
-	"autoOpen": false
+    "autoOpen": false
   }
 }

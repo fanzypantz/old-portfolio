@@ -16,6 +16,13 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+
+  env: {
+    nodeEnv: process.env.NODE_ENV || 'development',
+    backendURL:
+      process.env.BACKEND_URL || 'http://andreas-tollanes.com/graphql',
+    useSSL: process.env.USE_SSL || false
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -47,7 +54,14 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
     '@nuxtjs/markdownit',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/proxy'
+  ],
+
+  proxy: [
+    // Proxies /foo to http://example.com/foo
+    'http://andreas-tollanes.com/graphql'
+    // 'http://localhost:1337/graphql'
   ],
   /*
    ** Axios module configuration
@@ -55,14 +69,14 @@ export default {
    */
   axios: {},
 
-  apollo: {	  
-	cookieAttributes: {
-      secure: true,
+  apollo: {
+    cookieAttributes: {
+      secure: process.env.useSSL || false
     },
 
     clientConfigs: {
       default: {
-        httpEndpoint: process.env.BACKEND_URL || 'https://andreas-tollanes.com/graphql'
+        httpEndpoint: process.env.backendURL || 'http://localhost:1337/graphql'
       }
     }
   },
