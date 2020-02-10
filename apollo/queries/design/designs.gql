@@ -8,6 +8,9 @@ query {
     index_image {
       url
     }
+    index_image_small {
+      url
+    }
     content
     category {
       name

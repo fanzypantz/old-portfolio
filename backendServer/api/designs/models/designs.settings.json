@@ -36,6 +36,12 @@
     "order": {
       "type": "integer",
       "required": true
+    },
+    "index_image_small": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
     }
   }
 }
