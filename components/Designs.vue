@@ -24,7 +24,7 @@
       >
         <img
           @click="(e) => e.preventDefault()"
-          :src="'http://localhost:1337' + design.index_image.url"
+          :src="getImageSrc(design.index_image.url)"
           alt=""
         />
         <div
@@ -73,6 +73,10 @@ export default {
       }
     },
 
+    getImageSrc(url) {
+      return (process.env.IMAGE_URL || 'http://localhost:1337') + url;
+    },
+
     showDescription(id) {
       return this.designHeight !== null && this.expanded === id;
     },
@@ -80,7 +84,9 @@ export default {
     fixLinks(content) {
       return content.replace(
         /!\[text\]\(\/uploads\//g,
-        '![text](http://localhost:1337/uploads/'
+        '![text](' +
+          (process.env.IMAGE_URL || 'http://localhost:1337') +
+          '/uploads/'
       );
     },
 
