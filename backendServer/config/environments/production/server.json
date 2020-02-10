@@ -1,14 +1,16 @@
 {
-  "host": "https://andreas-tollanes.com",
+  "host": "andreas-tollanes.com",
   "port": "${process.env.PORT || 1337}",
   "production": true,
   "proxy": {
-    "enabled": false
+    "enabled": true,
+	"ssl": true,
+	"host": "andreas-tollanes.com"
   },
   "cron": {
     "enabled": false
   },
   "admin": {
-    "autoOpen": false
+	"autoOpen": false
   }
 }
