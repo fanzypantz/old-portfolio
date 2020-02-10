@@ -60,8 +60,10 @@ export default {
 
   proxy: [
     // Proxies /foo to http://example.com/foo
-    'http://andreas-tollanes.com/graphql'
-    // 'http://localhost:1337/graphql'
+    'http://andreas-tollanes.com/graphql',
+    'https://andreas-tollanes.com/graphql',
+    'http://localhost:1337/graphql',
+    'https://localhost:1337/graphql'
   ],
   /*
    ** Axios module configuration
