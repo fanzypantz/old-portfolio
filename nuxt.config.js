@@ -55,7 +55,10 @@ export default {
    */
   axios: {},
 
-  apollo: {
+  apollo: {	  
+	cookieAttributes: {
+      secure: true,
+    },
 
     clientConfigs: {
       default: {
