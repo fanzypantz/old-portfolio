@@ -34,7 +34,11 @@
         <img
           @click="(e) => e.preventDefault()"
           :src="
-            getImageSrc(design.index_image_small.url, design.index_image.url)
+            getImageSrc(
+              design.index_image_small.url,
+              design.index_image.url,
+              design.id
+            )
           "
           alt=""
         />
@@ -102,9 +106,9 @@ export default {
       }
     },
 
-    getImageSrc(url, fallback) {
-      // Use fallback url if the client is on a higher rez screen
-      if (fallback && this.windowWidth > 900) {
+    getImageSrc(url, fallback, id) {
+      // Show a higher rez image if it will be shown
+      if (id && fallback && this.expanded === id) {
         return (process.env.IMAGE_URL || 'http://localhost:1337') + fallback;
       } else {
         return (process.env.IMAGE_URL || 'http://localhost:1337') + url;
