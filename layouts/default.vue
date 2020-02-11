@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <li v-for="(category, index) in categories" :key="index">
-      <router-link
-        :to="{ name: 'categories-id', params: { id: category.id } }"
-        tag="a"
-        >{{ category.name }}
-      </router-link>
-    </li>
+  <div class="main-container">
+    <!--    <li v-for="(category, index) in categories" :key="index">-->
+    <!--      <router-link-->
+    <!--        :to="{ name: 'categories-id', params: { id: category.id } }"-->
+    <!--        tag="a"-->
+    <!--        >{{ category.name }}-->
+    <!--      </router-link>-->
+    <!--    </li>-->
 
     <nuxt />
   </div>
@@ -65,6 +65,7 @@ li
 
 body
   background-color: $bg
+  min-height: 200vh
 
 button, .btn
   font-family: 'Inconsolata', monospace

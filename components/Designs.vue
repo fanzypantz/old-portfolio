@@ -279,6 +279,8 @@ $ease-timer: 250ms
   .fade-enter, .fade-leave-to
     opacity: 0
 
+
+
 .design-index
   cursor: pointer
   margin-top: 10px
