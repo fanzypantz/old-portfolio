@@ -184,9 +184,6 @@ export default {
       const elementData = this.designs[index];
       const currentSub = (index + 1) % 4;
       if (this.expanded === null) {
-        const clickedElement = this.$refs['design' + elementData.id][0];
-        const image = clickedElement.querySelector('IMG');
-
         // If its not the third index or the first entry
         if (currentSub !== 0) {
           // Based on the result of the mod calculation you are one
