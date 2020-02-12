@@ -8,19 +8,42 @@
     <!--      </router-link>-->
     <!--    </li>-->
 
+    <Blob01 class="blob"></Blob01>
+    <Blob02 class="blob blob2"></Blob02>
+    <Blob03 class="blob blob3"></Blob03>
+    <Blob04 class="blob blob4"></Blob04>
+    <Blob05 class="blob blob5"></Blob05>
+    <Blob06 class="blob blob6"></Blob06>
+
     <nuxt />
   </div>
 </template>
 
 <script>
 import categoriesQuery from '~/apollo/queries/category/categories';
+import Blob01 from '~/static/svg/blob01.svg?inline';
+import Blob02 from '~/static/svg/blob02.svg?inline';
+import Blob03 from '~/static/svg/blob03.svg?inline';
+import Blob04 from '~/static/svg/blob04.svg?inline';
+import Blob05 from '~/static/svg/blob05.svg?inline';
+import Blob06 from '~/static/svg/blob06.svg?inline';
 
 export default {
+  components: {
+    Blob01,
+    Blob02,
+    Blob03,
+    Blob04,
+    Blob05,
+    Blob06
+  },
+
   data() {
     return {
       categories: []
     };
   },
+
   apollo: {
     categories: {
       prefetch: true,
@@ -33,6 +56,7 @@ export default {
 <style lang="sass">
 
 html
+  overflow-x: hidden
   font-family: 'Inconsolata', monospace
   color: $font-colour
   font-size: 16px
@@ -92,4 +116,66 @@ button, .btn
 
   &:hover .button-icon
     filter: invert(100)
+
+.main-container
+  position: relative
+
+.blob-container
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  right: 0
+
+
+.blob
+  position: absolute
+  transform: translateY(-100vh)
+  top: -10%
+  right: -14%
+  filter: drop-shadow($blob-shadow)
+  animation: blob-animation 1s ease 2s forwards
+  path
+    fill: $bg
+
+.blob2
+  top: 4%
+  right: 12%
+  animation: blob-animation 1s ease 2.2s forwards
+
+.blob3
+  top: -3%
+  right: 22%
+  animation: blob-animation 1s ease 2.4s forwards
+  path
+    fill: $bg-alternative
+
+.blob4
+  top: -6%
+  right: -9%
+  animation: blob-animation 1s ease 2.6s forwards
+  path
+    fill: $bg-alternative-light
+
+.blob5
+  top: 0
+  right: -3%
+  animation: blob-animation 1s ease 2.8s forwards
+  path
+    fill: $bg-medium
+
+.blob6
+  top: -5%
+  right: -5%
+  animation: blob-animation 1s ease 3s forwards
+  path
+    fill: $bg-alternative
+
+@keyframes blob-animation
+  0%
+    transform: translateY(-100vh)
+  70%
+    transform: translateY(5vh)
+  100%
+    transform: translateY(0vh)
 </style>

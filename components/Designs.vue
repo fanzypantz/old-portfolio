@@ -262,7 +262,7 @@ $ease-timer: 250ms
   display: flex
   flex-wrap: wrap
   width: 80vw
-  margin: 0 auto
+  margin: 0 auto 200px auto
 
   .expanded-container
     width: 100%
@@ -310,7 +310,7 @@ $ease-timer: 250ms
     width: 100%
     height: 0
     display: flex
-    justify-content: center
+    justify-content: space-around
     align-items: center
     flex-direction: column
     background-color: rgba(0, 0, 0, 0.50)
@@ -322,7 +322,6 @@ $ease-timer: 250ms
     transition: height $ease-timer ease, opacity $ease-timer ease
 
     .content
-      margin: 20px 0
       font-size: 20px
       line-height: 20px
       width: 80%
