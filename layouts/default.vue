@@ -8,13 +8,17 @@
     <!--      </router-link>-->
     <!--    </li>-->
 
-    <Blob01 class="blob"></Blob01>
-    <Blob02 class="blob blob2"></Blob02>
-    <Blob03 class="blob blob3"></Blob03>
-    <Blob04 class="blob blob4"></Blob04>
-    <Blob05 class="blob blob5"></Blob05>
-    <Blob06 class="blob blob6"></Blob06>
+    <div class="main-header">
+      <Blob01 class="blob"></Blob01>
+      <Blob02 class="blob blob2"></Blob02>
+      <Blob03 class="blob blob3"></Blob03>
+      <Blob04 class="blob blob4"></Blob04>
+      <Blob05 class="blob blob5"></Blob05>
+      <Blob06 class="blob blob6"></Blob06>
 
+      <h1 class="hero">Work In Progress!</h1>
+      <h2 class="hero">SoonTM</h2>
+    </div>
     <nuxt />
   </div>
 </template>
@@ -120,18 +124,24 @@ button, .btn
 .main-container
   position: relative
 
-.blob-container
-  width: 100%
-  height: 100%
-  position: absolute
-  top: 0
-  right: 0
+.main-header
+  position: relative
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: 100vh
+  border-bottom: 2px solid $bg-alternative
+  margin-bottom: 150px
+
+.hero
+  z-index: 200
 
 
 .blob
   position: absolute
   transform: translateY(-100vh)
-  top: -10%
+  top: -36%
   right: -14%
   filter: drop-shadow($blob-shadow)
   animation: blob-animation 1s ease 2s forwards
@@ -139,33 +149,33 @@ button, .btn
     fill: $bg
 
 .blob2
-  top: 4%
+  top: 20%
   right: 12%
   animation: blob-animation 1s ease 2.2s forwards
 
 .blob3
-  top: -3%
+  top: -10%
   right: 22%
   animation: blob-animation 1s ease 2.4s forwards
   path
     fill: $bg-alternative
 
 .blob4
-  top: -6%
+  top: -22%
   right: -9%
   animation: blob-animation 1s ease 2.6s forwards
   path
     fill: $bg-alternative-light
 
 .blob5
-  top: 0
+  top: -3%
   right: -3%
   animation: blob-animation 1s ease 2.8s forwards
   path
     fill: $bg-medium
 
 .blob6
-  top: -5%
+  top: -10%
   right: -5%
   animation: blob-animation 1s ease 3s forwards
   path

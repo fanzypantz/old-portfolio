@@ -1,32 +1,27 @@
 <template>
   <div class="index-container">
-    <div class="main-header">
-      <h1>Work In Progress!</h1>
-      <h2>SoonTM</h2>
-
-      <div class="design-sort">
-        <h1 class="sort-title">Sort By</h1>
-        <button
-          @click="sortDesigns('Website')"
-          v-bind:class="[
-            'btn',
-            'sort-button',
-            currentType === 'Website' ? 'selected' : ''
-          ]"
-        >
-          Web Design
-        </button>
-        <button
-          @click="sortDesigns('3D')"
-          v-bind:class="[
-            'btn',
-            'sort-button',
-            currentType === '3D' ? 'selected' : ''
-          ]"
-        >
-          3D Design
-        </button>
-      </div>
+    <div class="design-sort">
+      <h1 class="sort-title">Sort By</h1>
+      <button
+        @click="sortDesigns('Website')"
+        v-bind:class="[
+          'btn',
+          'sort-button',
+          currentType === 'Website' ? 'selected' : ''
+        ]"
+      >
+        Web Design
+      </button>
+      <button
+        @click="sortDesigns('3D')"
+        v-bind:class="[
+          'btn',
+          'sort-button',
+          currentType === '3D' ? 'selected' : ''
+        ]"
+      >
+        3D Design
+      </button>
     </div>
 
     <Designs :designs="designs"> </Designs>
@@ -84,24 +79,14 @@ export default {
 .index-container
   position: relative
 
-.main-header
-  position: relative
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  height: 100vh
-  border-bottom: 2px solid $bg-alternative
-  margin-bottom: 150px
-
 .design-sort
-  width: 80%
+  width: 100%
   display: flex
   justify-content: center
   align-items: center
   flex-wrap: wrap
   position: absolute
-  bottom: -140px
+  top: -140px
 
   .sort-button
     color: $font-colour

@@ -181,14 +181,12 @@ export default {
               if (image.naturalHeight > window.innerHeight) {
                 clickedElement.scrollIntoView({
                   behavior: 'smooth',
-                  block: 'start',
-                  inline: 'start'
+                  block: 'start'
                 });
               } else {
                 clickedElement.scrollIntoView({
                   behavior: 'smooth',
-                  block: 'center',
-                  inline: 'center'
+                  block: 'center'
                 });
               }
             }, this.timeOut);
@@ -200,8 +198,7 @@ export default {
           setTimeout(() => {
             clickedElement.scrollIntoView({
               behavior: 'smooth',
-              block: 'center',
-              inline: 'center'
+              block: 'center'
             });
           }, this.timeOut);
         }
@@ -220,15 +217,13 @@ export default {
               setTimeout(() => {
                 clickedElement.scrollIntoView({
                   behavior: 'smooth',
-                  block: 'center',
-                  inline: 'center'
+                  block: 'center'
                 });
               }, this.timeOut);
             } else {
               clickedElement.scrollIntoView({
                 behavior: 'smooth',
-                block: 'center',
-                inline: 'center'
+                block: 'center'
               });
             }
           }, this.timeOut);
