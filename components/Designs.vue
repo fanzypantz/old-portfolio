@@ -32,6 +32,7 @@
         class="design-container-image"
       >
         <img
+          @load="loadedImage(design.id, index)"
           @click="(e) => e.preventDefault()"
           :src="
             getImageSrc(
@@ -98,6 +99,44 @@ export default {
   },
 
   methods: {
+    loadedImage(id, index) {
+      if (id === this.expanded) {
+        const currentSub = (index + 1) % 4;
+        const elementData = this.designs[index];
+        const clickedElement = this.$refs['design' + elementData.id][0];
+        const image = clickedElement.querySelector('IMG');
+        if (currentSub !== 0) {
+          setTimeout(() => {
+            const aspectRatio = image.naturalWidth / image.naturalHeight;
+            this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+
+            setTimeout(() => {
+              if (image.naturalHeight > window.innerHeight) {
+                clickedElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              } else {
+                clickedElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+              }
+            }, this.timeOut);
+          }, this.timeOut);
+        } else {
+          const aspectRatio = image.naturalWidth / image.naturalHeight;
+          this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+          setTimeout(() => {
+            clickedElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }, this.timeOut);
+        }
+      }
+    },
+
     getHeight(id) {
       if (this.expanded === id && this.designHeight !== null) {
         return this.designHeight + 'px';
@@ -173,34 +212,8 @@ export default {
               break;
           }
           this.expanded = elementData.id;
-          setTimeout(() => {
-            const aspectRatio = image.naturalWidth / image.naturalHeight;
-            this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
-
-            setTimeout(() => {
-              if (image.naturalHeight > window.innerHeight) {
-                clickedElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              } else {
-                clickedElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-              }
-            }, this.timeOut);
-          }, this.timeOut);
         } else {
           this.expanded = elementData.id;
-          const aspectRatio = image.naturalWidth / image.naturalHeight;
-          this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
-          setTimeout(() => {
-            clickedElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center'
-            });
-          }, this.timeOut);
         }
       } else {
         // If its already open close then call this function again
