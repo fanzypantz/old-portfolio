@@ -1,13 +1,5 @@
 <template>
   <div class="main-container">
-    <!--    <li v-for="(category, index) in categories" :key="index">-->
-    <!--      <router-link-->
-    <!--        :to="{ name: 'categories-id', params: { id: category.id } }"-->
-    <!--        tag="a"-->
-    <!--        >{{ category.name }}-->
-    <!--      </router-link>-->
-    <!--    </li>-->
-
     <div class="main-header">
       <Blob01 class="blob"></Blob01>
       <Blob02 class="blob blob2"></Blob02>
@@ -144,7 +136,7 @@ button, .btn
   top: -36%
   right: -14%
   filter: drop-shadow($blob-shadow)
-  animation: blob-animation 1s ease 2s forwards
+  animation: blob-animation 1s ease 2.6s forwards
   path
     fill: $bg
 
@@ -163,7 +155,7 @@ button, .btn
 .blob4
   top: -22%
   right: -9%
-  animation: blob-animation 1s ease 2.6s forwards
+  animation: blob-animation 1s ease 2s forwards
   path
     fill: $bg-alternative-light
 

@@ -49,14 +49,11 @@
             'design-description'
           ]"
         >
-          <n-link
-            :to="{ name: 'designs-id', params: { id: design.id } }"
-            class="design-link"
-          >
+          <div class="design-link">
             <h2>
               {{ design.project_name }}
             </h2>
-          </n-link>
+          </div>
           <div
             v-html="$md.render(removeLinks(design.content))"
             class="content"
