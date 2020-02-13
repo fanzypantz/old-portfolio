@@ -19,7 +19,7 @@
 
       <div class="hero-container">
         <h3 class="hero-text">
-          Hi I am Andreas Halvorsen Tollånes, I do web stuff
+          Hi, I am Andreas Halvorsen Tollånes, I do web stuff
         </h3>
         <h1 class="hero hero01">Front End Developer</h1>
         <h1 class="hero hero02">3D Designer</h1>
