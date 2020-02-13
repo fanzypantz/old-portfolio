@@ -53,7 +53,8 @@ export default {
   data() {
     return {
       categories: [],
-      viewPortHeight: null
+      viewPortHeight: null,
+      viewPortWidth: null
     };
   },
 
@@ -62,14 +63,20 @@ export default {
       // eslint-disable-next-line nuxt/no-globals-in-created
       this.viewPortHeight = window.innerHeight;
       // eslint-disable-next-line nuxt/no-globals-in-created
+      this.viewPortWidth = window.innerWidth;
+      // eslint-disable-next-line nuxt/no-globals-in-created
       window.addEventListener('resize', this.setViewPortHeight);
     }
   },
 
   methods: {
     blobHeight() {
-      if (this.viewPortHeight !== null) {
-        return this.viewPortHeight / 1000;
+      if (this.viewPortHeight !== null && this.viewPortWidth !== null) {
+        if (this.viewPortHeight < this.viewPortWidth) {
+          return this.viewPortHeight / 1000;
+        } else {
+          return this.viewPortWidth / 1000;
+        }
       } else {
         return 1;
       }
@@ -77,6 +84,7 @@ export default {
 
     setViewPortHeight() {
       this.viewPortHeight = window.innerHeight;
+      this.viewPortWidth = window.innerWidth;
     }
   },
 
