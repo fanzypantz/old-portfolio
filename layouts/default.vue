@@ -255,7 +255,7 @@ button, .btn
 
 .blob
   position: absolute
-  transform: translateY(-100vh)
+  transform: translateY(-1000px)
   top: -69%
   right: -61%
   filter: drop-shadow($blob-shadow)
@@ -298,9 +298,9 @@ button, .btn
 
 @keyframes blob-animation
   0%
-    transform: translateY(-100vh)
+    transform: translateY(-1000px)
   70%
-    transform: translateY(5vh)
+    transform: translateY(50px)
   100%
-    transform: translateY(0vh)
+    transform: translateY(0px)
 </style>
