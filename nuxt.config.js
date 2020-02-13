@@ -15,7 +15,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
-        name: 'description',
+        name: 'Andreas Tollånes - A Personal Portfolio',
         content: process.env.npm_package_description || ''
       }
     ],
@@ -89,6 +89,7 @@ export default {
       }
     }
   },
+
   markdownit: {
     preset: 'default',
     linkify: true,

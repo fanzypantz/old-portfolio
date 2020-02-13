@@ -1,5 +1,5 @@
 <template>
-  <div class="design-container">
+  <transition-group name="list-complete" class="design-container">
     <div
       :ref="'design' + design.id"
       v-for="(design, index) in designs"
@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -76,23 +76,12 @@ export default {
 
   data() {
     return {
-      windowWidth: null,
-      windowHeight: null,
       designHeight: null,
       expanded: null,
       collapsedElements: [],
       timeOut: 250,
       fullScreenImage: null
     };
-  },
-
-  created() {
-    if (process.client) {
-      // eslint-disable-next-line nuxt/no-globals-in-created
-      this.windowWidth = window.innerWidth;
-      // eslint-disable-next-line nuxt/no-globals-in-created
-      this.windowHeight = window.innerHeight;
-    }
   },
 
   methods: {
@@ -281,16 +270,25 @@ $ease-timer: 250ms
   .fade-enter, .fade-leave-to
     opacity: 0
 
+.list-complete-enter, .list-complete-leave-to
+  width: 0 !important
+  opacity: 0 !important
+  margin: 0 !important
+
+
+.list-complete-leave-active
+  position: absolute
 
 
 .design-index
+  position: relative
   cursor: pointer
   margin-top: 10px
   margin-right: 10px
   width: calc((80vw / 3) - (20px / 3))
   height: calc((80vw / 3) - 10px)
   opacity: 1
-  transition: width $ease-timer ease, height $ease-timer ease, opacity $ease-timer ease, margin-right $ease-timer ease
+  transition: all $ease-timer
 
   &:nth-child(-n+3)
     margin-top: 0

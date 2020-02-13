@@ -1,7 +1,7 @@
 {
   "name": "personal-portfolio",
   "version": "1.0.0",
-  "description": "My personal portfolio",
+  "description": "A personal portfolio displaying what I have done so far and how to get in contact with me.",
   "author": "Andreas Halvorsen Tollånes",
   "private": true,
   "scripts": {
