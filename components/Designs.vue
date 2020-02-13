@@ -97,7 +97,7 @@ export default {
             this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
 
             setTimeout(() => {
-              if (image.naturalHeight > window.innerHeight) {
+              if (this.designHeight > window.innerHeight) {
                 clickedElement.scrollIntoView({
                   behavior: 'smooth',
                   block: 'start'

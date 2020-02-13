@@ -15,6 +15,8 @@
         <Blob06 class="blob blob6"></Blob06>
       </div>
 
+      <Arrow class="arrow"></Arrow>
+
       <div class="hero-container">
         <h3 class="hero-text">
           Hi I am Andreas Halvorsen Tollånes, I do web stuff
@@ -39,6 +41,7 @@ import Blob03 from '~/static/svg/blob03.svg?inline';
 import Blob04 from '~/static/svg/blob04.svg?inline';
 import Blob05 from '~/static/svg/blob05.svg?inline';
 import Blob06 from '~/static/svg/blob06.svg?inline';
+import Arrow from '~/static/svg/arrow.svg?inline';
 
 export default {
   components: {
@@ -47,7 +50,8 @@ export default {
     Blob03,
     Blob04,
     Blob05,
-    Blob06
+    Blob06,
+    Arrow
   },
 
   data() {
@@ -178,7 +182,6 @@ button, .btn
   justify-content: center
   align-items: center
   height: 100vh
-  border-bottom: 2px solid $bg-alternative
   margin-bottom: 150px
 
 .hero-container
@@ -259,40 +262,40 @@ button, .btn
   top: -69%
   right: -61%
   filter: drop-shadow($blob-shadow)
-  animation: blob-animation 1s ease 3.8s forwards
+  animation: blob-animation 1s ease 3.4s forwards
   path
     fill: $bg
 
 .blob2
   top: 37%
   right: 44%
-  animation: blob-animation 1s ease 4s forwards
+  animation: blob-animation 1s ease 3.6s forwards
 
 .blob3
   top: -28%
   right: 89%
-  animation: blob-animation 1s ease 4.2s forwards
+  animation: blob-animation 1s ease 3.8s forwards
   path
     fill: $bg-alternative
 
 .blob4
   top: -43%
   right: -33%
-  animation: blob-animation 1s ease 3.4s forwards
+  animation: blob-animation 1s ease 3s forwards
   path
     fill: $bg-alternative-light
 
 .blob5
   top: -5%
   right: -5%
-  animation: blob-animation 1s ease 4.4s forwards
+  animation: blob-animation 1s ease 4s forwards
   path
     fill: $bg-medium
 
 .blob6
   top: -30%
   right: -19%
-  animation: blob-animation 1s ease 3.6s forwards
+  animation: blob-animation 1s ease 3.2s forwards
   path
     fill: $bg-alternative
 
@@ -303,4 +306,47 @@ button, .btn
     transform: translateY(50px)
   100%
     transform: translateY(0px)
+
+
+.arrow
+  position: absolute
+  opacity: 0
+  bottom: 3%
+  left: 50%
+  transform: translateX(-50%)
+  animation: bounce-in-top 1.1s 4s forwards
+
+@keyframes bounce-in-top
+  0%
+    transform: translateY(-500px)
+    animation-timing-function: ease-in
+    opacity: 0
+  38%
+    transform: translateY(0)
+    animation-timing-function: ease-out
+    opacity: 1
+  55%
+    transform: translateY(-65px)
+    animation-timing-function: ease-in
+    opacity: 1
+  72%
+    transform: translateY(0)
+    animation-timing-function: ease-out
+    opacity: 1
+  81%
+    transform: translateY(-28px)
+    animation-timing-function: ease-in
+    opacity: 1
+  90%
+    transform: translateY(0)
+    animation-timing-function: ease-out
+    opacity: 1
+  95%
+    transform: translateY(-8px)
+    animation-timing-function: ease-in
+    opacity: 1
+  100%
+    transform: translateY(0)
+    animation-timing-function: ease-out
+    opacity: 1
 </style>

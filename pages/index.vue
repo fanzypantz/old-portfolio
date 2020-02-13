@@ -24,7 +24,12 @@
       </button>
     </div>
 
-    <Designs :designs="designs"> </Designs>
+    <Designs
+      v-for="n in Math.ceil(designs.length / 7)"
+      :designs="designs.slice(7 * n - 7, 7 * n)"
+      :key="n"
+    >
+    </Designs>
   </div>
 </template>
 
