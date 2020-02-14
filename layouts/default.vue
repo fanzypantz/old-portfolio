@@ -272,40 +272,40 @@ button, .btn
   top: -69%
   right: -61%
   filter: drop-shadow($blob-shadow)
-  animation: blob-animation 1s ease 3.4s forwards, float-2 12s ease-in-out 4.2s infinite
+  animation: blob-animation 1s ease 3.4s forwards, float-2 12s ease 4.4s infinite
   path
     fill: $bg
 
 .blob2
   top: 37%
   right: 44%
-  animation: blob-animation 1s ease 3.6s forwards, float 12s ease-in-out 4.6s infinite
+  animation: blob-animation 1s ease 3.6s forwards, float 12s ease 4.6s infinite
 
 .blob3
   top: -28%
   right: 89%
-  animation: blob-animation 1s ease 3.8s forwards, float-2 12s ease-in-out 4.8s infinite
+  animation: blob-animation 1s ease 3.8s forwards, float-2 12s ease 4.8s infinite
   path
     fill: $bg-alternative
 
 .blob4
   top: -43%
   right: -33%
-  animation: blob-animation 1s ease 3s forwards, float 12s ease-in-out 4s infinite
+  animation: blob-animation 1s ease 3s forwards, float 12s ease 4s infinite
   path
     fill: $bg-alternative-light
 
 .blob5
   top: -5%
   right: -5%
-  animation: blob-animation 1s ease 4s forwards, float-2 12s ease-in-out 5s infinite
+  animation: blob-animation 1s ease 4s forwards, float-2 12s ease 5s infinite
   path
     fill: $bg-medium
 
 .blob6
   top: -30%
   right: -19%
-  animation: blob-animation 1s ease 3.2s forwards, float 12s ease-in-out 4.2s infinite
+  animation: blob-animation 1s ease 3.2s forwards, float 12s ease 4.2s infinite
   path
     fill: $bg-alternative
 
