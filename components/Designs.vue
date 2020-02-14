@@ -322,7 +322,7 @@ $ease-timer: 250ms
 
   &:hover
     .design-cta-text
-      animation: slide-in-top 1s ease forwards
+      animation: tracking-in-contract 1s ease forwards
 
   &:nth-child(-n+3)
     margin-top: 0
@@ -403,14 +403,16 @@ $ease-timer: 250ms
     left: 50%
     transform: translateX(-50%)
 
-@keyframes slide-in-top
+
+@keyframes tracking-in-contract
   0%
-    transform: translateY(-200px)
+    letter-spacing: 1em
     opacity: 0
-  70%
-    transform: translateY(20%)
-    opacity: 0.7
+
+  40%
+    opacity: 0.6
+
   100%
-    transform: translateY(0)
+    letter-spacing: normal
     opacity: 1
 </style>
