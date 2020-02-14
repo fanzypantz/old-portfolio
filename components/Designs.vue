@@ -1,6 +1,8 @@
 <template>
   <transition-group name="list-complete" class="design-container">
     <div
+      @mouseover="handleMouseOver(design.id)"
+      @mouseleave="handleMouseOut"
       :ref="'design' + design.id"
       v-for="(design, index) in designs"
       v-bind:key="design.id"
@@ -13,6 +15,14 @@
         height: getHeight(design.id)
       }"
     >
+      <transition name="fade">
+        <div
+          v-if="expanded !== design.id && hovering === design.id"
+          class="design-cta"
+        >
+          <h2 class="design-cta-text">See More</h2>
+        </div>
+      </transition>
       <transition name="fade">
         <div
           @click="toggleFullScreen(null)"
@@ -80,11 +90,20 @@ export default {
       expanded: null,
       collapsedElements: [],
       timeOut: 250,
-      fullScreenImage: null
+      fullScreenImage: null,
+      hovering: null
     };
   },
 
   methods: {
+    handleMouseOver(id) {
+      this.hovering = id;
+    },
+
+    handleMouseOut() {
+      this.hovering = null;
+    },
+
     loadedImage(id, index) {
       if (id === this.expanded) {
         const currentSub = (index + 1) % 4;
@@ -264,11 +283,11 @@ $ease-timer: 250ms
     width: 0
     margin-right: 0
 
-  .fade-enter-active, .fade-leave-active
-    transition: opacity .5s
+.fade-enter-active, .fade-leave-active
+  transition: opacity 0.5s
 
-  .fade-enter, .fade-leave-to
-    opacity: 0
+.fade-enter, .fade-leave-to
+  opacity: 0
 
 .list-complete-enter, .list-complete-leave-to
   width: 0 !important
@@ -279,7 +298,6 @@ $ease-timer: 250ms
 .list-complete-leave-active
   position: absolute
 
-
 .design-index
   position: relative
   cursor: pointer
@@ -289,6 +307,22 @@ $ease-timer: 250ms
   height: calc((80vw / 3) - 10px)
   opacity: 1
   transition: all $ease-timer
+
+  .design-cta
+    background-color: $transparent
+    z-index: 20
+    position: absolute
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    pointer-events: none
+    transition: opacity 1s ease
+
+  &:hover
+    .design-cta-text
+      animation: slide-in-top 1s ease forwards
 
   &:nth-child(-n+3)
     margin-top: 0
@@ -313,7 +347,7 @@ $ease-timer: 250ms
     justify-content: space-around
     align-items: center
     flex-direction: column
-    background-color: rgba(0, 0, 0, 0.50)
+    background-color: $transparent
     position: absolute
     bottom: 0
     left: 0
@@ -368,4 +402,15 @@ $ease-timer: 250ms
     bottom: 2%
     left: 50%
     transform: translateX(-50%)
+
+@keyframes slide-in-top
+  0%
+    transform: translateY(-200px)
+    opacity: 0
+  70%
+    transform: translateY(20%)
+    opacity: 0.7
+  100%
+    transform: translateY(0)
+    opacity: 1
 </style>

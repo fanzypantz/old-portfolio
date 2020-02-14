@@ -1,6 +1,6 @@
 <template>
   <div class="index-container">
-    <div class="design-sort">
+    <div id="first-element" class="design-sort">
       <h1 class="sort-title">Sort By</h1>
       <button
         @click="sortDesigns('Website')"

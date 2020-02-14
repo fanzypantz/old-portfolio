@@ -15,7 +15,7 @@
         <Blob06 class="blob blob6"></Blob06>
       </div>
 
-      <Arrow class="arrow"></Arrow>
+      <Arrow v-scroll-to="'#first-element'" class="arrow"></Arrow>
 
       <div class="hero-container">
         <h3 class="hero-text">
@@ -161,11 +161,13 @@ button, .btn
   text-align: center
   height: 40px
   padding: 0 20px
+  transition: transform 250ms ease-in-out
 
   &:hover
     cursor: pointer
     color: $bg-alternative
     background-color: $hover
+    transform: scale(1.05)
 
   &:hover .button-icon
     filter: invert(100)
@@ -309,12 +311,44 @@ button, .btn
 
 
 .arrow
+  z-index: 200
   position: absolute
-  opacity: 0
   bottom: 3%
   left: 50%
-  transform: translateX(-50%)
-  animation: bounce-in-top 1.1s 4s forwards
+  opacity: 0
+  animation: bounce-in-top 1.1s forwards
+
+  &:hover
+    cursor: pointer
+    opacity: 1
+    animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both
+
+@keyframes shake-top
+  0%,
+  100%
+    opacity: 1
+    transform: rotate(0deg) scale(1)
+    transform-origin: 50% 0
+
+  10%
+    transform: rotate(2deg)
+
+  20%,
+  40%,
+  60%
+    transform: rotate(-4deg)
+
+  30%,
+  50%,
+  70%
+    transform: rotate(4deg) scale(1.1)
+
+  80%
+    transform: rotate(-2deg)
+
+  90%
+    transform: rotate(2deg)
+
 
 @keyframes bounce-in-top
   0%
