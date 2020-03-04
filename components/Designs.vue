@@ -289,12 +289,6 @@ $ease-timer: 250ms
 .fade-enter, .fade-leave-to
   opacity: 0
 
-.list-complete-enter, .list-complete-leave-to
-  width: 0 !important
-  opacity: 0 !important
-  margin: 0 !important
-
-
 .list-complete-leave-active
   position: absolute
 
@@ -417,6 +411,11 @@ $ease-timer: 250ms
     letter-spacing: normal
     opacity: 1
 
+@media (min-width: $breakpoint-tablet)
+  .list-complete-enter, .list-complete-leave-to
+    width: 0 !important
+    opacity: 0 !important
+    margin: 0 !important
 
 @media (max-width: $breakpoint-tablet)
 
