@@ -112,4 +112,19 @@ export default {
     color: $bg-alternative
     text-align: center
     width: 100%
+
+@media (max-width: $breakpoint-tablet)
+
+  .design-sort
+    top: -200px
+
+    .sort-button
+      width: 80%
+      margin: 5px 0
+
+@media (max-width: $breakpoint-mobile-L)
+
+  .design-sort
+    .sort-button
+      width: 90%
 </style>

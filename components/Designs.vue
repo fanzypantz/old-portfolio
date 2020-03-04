@@ -190,7 +190,7 @@ export default {
       const currentSub = (index + 1) % 4;
       if (this.expanded === null) {
         // If its not the third index or the first entry
-        if (currentSub !== 0) {
+        if (currentSub !== 0 && window.innerWidth > 768) {
           // Based on the result of the mod calculation you are one
           // out of three columns in the row, they need their own logic
           switch (currentSub) {
@@ -369,6 +369,7 @@ $ease-timer: 250ms
   .expanded-description
     opacity: 1
     max-height: 200px
+    min-height: 120px
     height: 20%
     pointer-events: all
 
@@ -415,4 +416,32 @@ $ease-timer: 250ms
   100%
     letter-spacing: normal
     opacity: 1
+
+
+@media (max-width: $breakpoint-tablet)
+
+  .design-container
+    margin-bottom: 20px
+
+  .design-index
+    width: 100%
+    height: 500px
+    margin: 20px 0
+
+    .expanded-description .btn,
+    .expanded-description .design-link
+      text-align: center
+      width: 90%
+      margin: 5px 0
+
+@media (max-width: $breakpoint-mobile-L)
+
+  .design-container
+    width: 90%
+
+  .design-index .design-description .content
+    width: 90%
+    font-size: 12px
+    line-height: 12px
+    max-height: 24px
 </style>

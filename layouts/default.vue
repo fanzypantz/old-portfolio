@@ -274,19 +274,21 @@ button, .btn
   filter: drop-shadow($blob-shadow)
   animation: blob-animation 1s ease 3.4s forwards, float-2 12s ease 4.4s infinite
   path
-    fill: $bg
+    fill: $bg-alternative-light
 
 .blob2
   top: 37%
   right: 44%
   animation: blob-animation 1s ease 3.6s forwards, float 12s ease 4.6s infinite
+  path
+    fill: $bg
 
 .blob3
   top: -28%
   right: 89%
   animation: blob-animation 1s ease 3.8s forwards, float-2 12s ease 4.8s infinite
   path
-    fill: $bg-alternative
+    fill: $bg-medium
 
 .blob4
   top: -43%
@@ -307,7 +309,7 @@ button, .btn
   right: -19%
   animation: blob-animation 1s ease 3.2s forwards, float 12s ease 4.2s infinite
   path
-    fill: $bg-alternative
+    fill: $bg
 
 @keyframes blob-animation
   0%
@@ -417,4 +419,54 @@ button, .btn
   100%
     filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
     transform: translate(0px, 0px)
+
+@media (max-width: $breakpoint-tablet)
+
+  .hero-container
+    width: 80%
+
+  .main-header
+    margin-bottom: 200px
+
+@media (max-width: $breakpoint-mobile-L)
+
+  @keyframes border-fade
+    0%
+      padding-left: 0
+      border-left: 0 solid $bg-alternative
+    70%
+      padding-left: 40px
+      border-left: 6px solid $bg-alternative
+    100%
+      padding-left: 20px
+      border-left: 4px solid $bg-alternative
+
+  .hero-container
+    .hero
+      font-size: 3em
+
+    .hero-text
+      font-size: 1em
+
+@media (max-height: $breakpoint-tablet-height)
+
+  .hero-container
+    .hero,
+    .hero-text
+      margin: 5px 0
+
+    .hero-text:first-of-type
+      margin: 0 0 5px 0
+
+    .hero-text:last-of-type
+      margin: 5px 0 0 0
+
+
+@media (max-height: $breakpoint-mobile-L-height)
+
+  .hero-container
+    .hero
+      font-size: 2em
+    .hero-text
+      font-size: 1em
 </style>
