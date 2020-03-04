@@ -434,6 +434,11 @@ $ease-timer: 250ms
       width: 90%
       margin: 5px 0
 
+  .list-complete-enter, .list-complete-leave-to
+    height: 0 !important
+    opacity: 0 !important
+    margin: 0 !important
+
 @media (max-width: $breakpoint-mobile-L)
 
   .design-container
