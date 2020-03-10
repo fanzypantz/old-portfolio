@@ -353,7 +353,7 @@ $ease-timer: 250ms
       font-size: 20px
       line-height: 20px
       width: 80%
-      height: 40px
+      max-height: 80%
       overflow: hidden
 
     p, h2
@@ -362,16 +362,18 @@ $ease-timer: 250ms
 
   .expanded-description
     opacity: 1
-    max-height: 200px
-    min-height: 120px
-    height: 20%
+    height: auto
+    max-height: 100%
     pointer-events: all
+
+    .design-link, .btn, .content
+      margin: 10px 0
 
   img
     height: 100%
     width: 100%
     object-fit: cover
-    box-shadow: 0 0 8px 0 rgba(0,0,0, 0.5)
+    box-shadow: 0 0 8px 0 rgba(0,0,0, 0.2)
 
   .fullscreen-image
     z-index: 200
@@ -445,7 +447,6 @@ $ease-timer: 250ms
 
   .design-index .design-description .content
     width: 90%
-    font-size: 12px
-    line-height: 12px
-    max-height: 24px
+    font-size: 14px
+    line-height: 14px
 </style>

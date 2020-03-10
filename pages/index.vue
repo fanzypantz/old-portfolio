@@ -94,15 +94,18 @@ export default {
   top: -140px
 
   .sort-button
-    color: $font-colour
-    background-color: $bg
+    color: $bg-alternative
+    background-color: $bg-light
     width: 300px
     margin: 0 5px
 
     &:hover
+      color: $font-colour
+
       background-color: $bg-alternative-light
 
   .selected
+    color: $font-colour
     background-color: $bg-alternative
 
   .sort-title

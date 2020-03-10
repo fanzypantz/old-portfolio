@@ -1,6 +1,16 @@
 <template>
   <div class="main-container">
-    <div class="main-header">
+    <div @click.self="closeMenu" class="main-header">
+      <Hamburger
+        id="mobile-menu"
+        @click="toggleMenu"
+        v-if="!showMenu"
+      ></Hamburger>
+
+      <nav v-if="showMenu" @click="toggleMenu" class="nav-container">
+        <nuxt-link class="btn" to="/about">About Me</nuxt-link>
+      </nav>
+
       <div
         v-bind:style="{
           transform: 'scale(' + blobHeight() + ')'
@@ -42,6 +52,7 @@ import Blob04 from '~/static/svg/blob04.svg?inline';
 import Blob05 from '~/static/svg/blob05.svg?inline';
 import Blob06 from '~/static/svg/blob06.svg?inline';
 import Arrow from '~/static/svg/arrow.svg?inline';
+import Hamburger from '~/static/svg/hamburger.svg?inline';
 
 export default {
   components: {
@@ -51,14 +62,16 @@ export default {
     Blob04,
     Blob05,
     Blob06,
-    Arrow
+    Arrow,
+    Hamburger
   },
 
   data() {
     return {
       categories: [],
       viewPortHeight: null,
-      viewPortWidth: null
+      viewPortWidth: null,
+      showMenu: false
     };
   },
 
@@ -74,6 +87,16 @@ export default {
   },
 
   methods: {
+    toggleMenu() {
+      this.showMenu = !this.showMenu;
+    },
+
+    closeMenu() {
+      if (this.showMenu) {
+        this.showMenu = false;
+      }
+    },
+
     blobHeight() {
       if (this.viewPortHeight !== null && this.viewPortWidth !== null) {
         if (this.viewPortHeight < this.viewPortWidth) {
@@ -162,7 +185,7 @@ button, .btn
   justify-content: center
   align-items: center
   color: $font-colour
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.51)
+  box-shadow: 0 0 10px rgba(109, 146, 169, 0.4)
   border: none
   background-color: $bg-alternative
   line-height: 40px
@@ -176,6 +199,9 @@ button, .btn
     color: $bg-alternative
     background-color: $hover
     transform: scale(1.05)
+
+  &:focus
+    outline: none
 
   &:hover .button-icon
     filter: invert(100)
@@ -257,6 +283,40 @@ button, .btn
     @error "decimal: `#{$v}` is not a percent"
   @return $v / 100%
 
+#mobile-menu
+  z-index: 201
+  position: fixed
+  top: 50%
+  left: 0
+  transform: translateY(-50%)
+  transform-origin: left
+  transition: transform 250ms ease
+
+  &:hover
+    cursor: pointer
+    transform: translateY(-50%) scale(1.4)
+
+.nav-container
+  z-index: 200
+  background-color: $transparent
+  position: fixed
+  top: 0
+  left: 0
+  height: 100vh
+  width: 200px
+  display: flex
+  justify-content: center
+  align-items: center
+
+  .btn
+    background-color: $bg
+    color: $bg-alternative
+    width: 100%
+
+    &:hover
+      background-color: $bg-alternative
+      color: $font-colour
+
 
 .blob-container
   transform-origin: top right
@@ -271,7 +331,7 @@ button, .btn
   transform: translateY(-1000px)
   top: -69%
   right: -61%
-  filter: drop-shadow($blob-shadow)
+  //filter: drop-shadow($blob-shadow)
   animation: blob-animation 1s ease 3.4s forwards, float-2 12s ease 4.4s infinite
   path
     fill: $bg-alternative-light
@@ -295,7 +355,7 @@ button, .btn
   right: -33%
   animation: blob-animation 1s ease 3s forwards, float 12s ease 4s infinite
   path
-    fill: $bg-alternative-light
+    fill: $bg-alternative
 
 .blob5
   top: -5%
@@ -396,28 +456,28 @@ button, .btn
 
 @keyframes float
   0%
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
+    //filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
     transform: translate(0px, 0px)
 
   50%
-    filter: drop-shadow(0 25px 15px rgba(0,0,0,0.2))
-    transform: translate(-20px, 20px)
+    //filter: drop-shadow(0 25px 15px rgba(0,0,0,0.2))
+    transform: translate(0px, 20px)
 
   100%
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
+    //filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
     transform: translate(0px, 0px)
 
 @keyframes float-2
   0%
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
+    //filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
     transform: translate(0px, 0px)
 
   50%
-    filter: drop-shadow(0 25px 15px rgba(0,0,0,0.2))
-    transform: translate(20px, -20px)
+    //filter: drop-shadow(0 25px 15px rgba(0,0,0,0.2))
+    transform: translate(0px, -20px)
 
   100%
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
+    //filter: drop-shadow(0 5px 15px rgba(0,0,0,0.6))
     transform: translate(0px, 0px)
 
 @media (max-width: $breakpoint-tablet)
