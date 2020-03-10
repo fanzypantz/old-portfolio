@@ -1,11 +1,8 @@
 <template>
   <div class="experience-container">
     <h2 class="experience-title">{{ name }}</h2>
-    <div v-for="(percentage, lang) in langExperience" class="experience">
-      <div
-        v-bind:style="{ width: percentage + '%' }"
-        class="experience-bar"
-      ></div>
+    <div v-for="(key, lang) in langExperience" class="experience">
+      <Experience-bar :lang="lang" :percentage="key" />
       <p class="language-name">{{ lang }}</p>
     </div>
     <div class="beginner">
@@ -18,13 +15,24 @@
     </div>
   </div>
 </template>
+
 <script>
+import ExperienceBar from './ExperienceBar';
+
 export default {
   name: 'Experience',
+  components: { ExperienceBar },
   props: {
-    langExperience: {},
-    name: {}
-  }
+    langExperience: {
+      type: Object,
+      default() {
+        return {};
+      }
+    },
+    name: { type: String, default: '' }
+  },
+
+  methods: {}
 };
 </script>
 <style lang="sass">
@@ -42,13 +50,6 @@ export default {
     text-align: center
     color: $bg-alternative
     margin-bottom: 20px
-
-.experience-bar
-    position: absolute
-    top: 0
-    left: 0
-    height: 100%
-    background-color: $bg-alternative-light
 
 .language-name
     position: relative
