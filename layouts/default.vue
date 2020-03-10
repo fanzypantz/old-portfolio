@@ -1,14 +1,16 @@
 <template>
   <div class="main-container">
-    <div @click.self="closeMenu" class="main-header">
+    <div class="main-header">
       <Hamburger
         id="mobile-menu"
         @click="toggleMenu"
         v-if="!showMenu"
       ></Hamburger>
 
-      <nav v-if="showMenu" @click="toggleMenu" class="nav-container">
+      <nav v-if="showMenu" @click.self="toggleMenu" class="nav-container">
+        <nuxt-link class="btn" to="/">Home</nuxt-link>
         <nuxt-link class="btn" to="/about">About Me</nuxt-link>
+        <button @click="toggleMenu" class="btn">Close</button>
       </nav>
 
       <div
@@ -39,7 +41,7 @@
         </h3>
       </div>
     </div>
-    <nuxt />
+    <nuxt @click.self="closeMenu" />
   </div>
 </template>
 
@@ -176,7 +178,7 @@ body
   min-height: 200vh
 
 button, .btn
-  font-family: 'Inconsolata', monospace
+  font-family: $font-family
   text-transform: uppercase
   font-weight: 500
   font-size: 16px
@@ -211,6 +213,12 @@ button, .btn
   overflow-x: hidden
   position: relative
 
+.centered-content
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
 .main-header
   position: relative
   display: flex
@@ -235,7 +243,7 @@ button, .btn
     opacity: 0
     font-size: 4rem
     font-weight: 300
-    font-family: 'Inconsolata', monospace
+    font-family: $font-family
 
   .hero01
     animation: hero-text 1s ease 1.7s forwards
@@ -305,6 +313,7 @@ button, .btn
   height: 100vh
   width: 200px
   display: flex
+  flex-direction: column
   justify-content: center
   align-items: center
 

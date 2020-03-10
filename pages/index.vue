@@ -110,7 +110,7 @@ export default {
 
   .sort-title
     margin: 20px 0
-    font-family: 'Inconsolata', monospace
+    font-family: $font-family
     font-weight: 200
     color: $bg-alternative
     text-align: center
