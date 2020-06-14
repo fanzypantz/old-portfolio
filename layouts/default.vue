@@ -1,31 +1,31 @@
 <template>
   <div class="main-container">
     <div class="main-header">
-      <Navigation />
+      <NavComponent />
 
-      <Blobs />
+      <BlobsComponent />
 
-      <Arrow />
+      <ArrowComponent />
 
-      <Hero />
+      <HeroComponent />
     </div>
     <nuxt />
   </div>
 </template>
 
 <script>
-import Blobs from '../components/Blobs';
-import Hero from '../components/Hero';
-import Navigation from '../components/Navigation';
+import ArrowComponent from '../components/ArrowComponent';
+import BlobsComponent from '../components/BlobsComponent';
+import HeroComponent from '../components/HeroComponent';
+import NavComponent from '../components/NavComponent';
 import categoriesQuery from '~/apollo/queries/category/categories';
-import Arrow from '~/static/svg/arrow.svg?inline';
 
 export default {
   components: {
-    Navigation,
-    Hero,
-    Blobs,
-    Arrow
+    NavComponent,
+    HeroComponent,
+    BlobsComponent,
+    ArrowComponent
   },
 
   data() {

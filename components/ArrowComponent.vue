@@ -6,7 +6,7 @@
 import Arrow from '~/static/svg/arrow.svg?inline';
 
 export default {
-  name: 'Arrow',
+  name: 'ArrowComponent',
   components: { Arrow }
 };
 </script>

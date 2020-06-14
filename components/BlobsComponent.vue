@@ -22,7 +22,7 @@ import Blob05 from '~/static/svg/blob05.svg?inline';
 import Blob06 from '~/static/svg/blob06.svg?inline';
 
 export default {
-  name: 'Blobs',
+  name: 'BlobsComponent',
   components: { Blob01, Blob02, Blob03, Blob04, Blob05, Blob06 },
 
   data() {

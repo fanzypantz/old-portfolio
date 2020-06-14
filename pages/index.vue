@@ -24,22 +24,21 @@
       </button>
     </div>
 
-    <Designs
+    <DesignsComponent
       v-for="n in Math.ceil(designs.length / 7)"
       :designs="designs.slice(7 * n - 7, 7 * n)"
       :key="n"
-    >
-    </Designs>
+    />
   </div>
 </template>
 
 <script>
 import designsQuery from '~/apollo/queries/design/designs';
-import Designs from '~/components/Designs';
+import DesignsComponent from '~/components/DesignsComponent';
 
 export default {
   components: {
-    Designs
+    DesignsComponent
   },
 
   data() {

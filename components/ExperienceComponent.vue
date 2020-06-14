@@ -2,7 +2,7 @@
   <div class="experience-container">
     <h2 class="experience-title">{{ name }}</h2>
     <div v-for="(key, lang) in langExperience" class="experience">
-      <Experience-bar :lang="lang" :percentage="key" />
+      <ExperienceBarComponent :lang="lang" :percentage="key" />
       <p class="language-name">{{ lang }}</p>
     </div>
     <div class="beginner">
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import ExperienceBar from './ExperienceBar';
+import ExperienceBarComponent from './ExperienceBarComponent';
 
 export default {
   name: 'Experience',
-  components: { ExperienceBar },
+  components: { ExperienceBarComponent },
   props: {
     langExperience: {
       type: Object,

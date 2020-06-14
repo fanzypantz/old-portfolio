@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-  name: 'Hero'
+  name: 'HeroComponent'
 };
 </script>
 <style lang="sass">

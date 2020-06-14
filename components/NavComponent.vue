@@ -18,7 +18,7 @@
 import Hamburger from '~/static/svg/hamburger.svg?inline';
 
 export default {
-  name: 'Navigation',
+  name: 'NavComponent',
   components: { Hamburger },
 
   data() {

@@ -1,7 +1,7 @@
 <template>
   <div id="first-element" class="about-container">
     <div class="centered-content about-content">
-      <Experience
+      <ExperienceComponent
         :lang-experience="langExperience"
         :name="'Language Experience'"
       />
@@ -19,7 +19,7 @@
           architectural visualizations.
         </p>
       </div>
-      <Experience
+      <ExperienceComponent
         :lang-experience="fieldExperience"
         :name="'Field Experience'"
       />
@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import Experience from '../components/Experience';
+import ExperienceComponent from '../components/ExperienceComponent';
 
 export default {
-  components: { Experience },
+  components: { ExperienceComponent },
 
   data() {
     return {
