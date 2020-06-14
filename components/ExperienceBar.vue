@@ -24,17 +24,14 @@ export default {
   methods: {
     checkStyle() {
       if (this.shown) {
-        console.log('show: ');
         return { width: this.percentage + '%' };
       } else {
-        console.log('not show: ');
         return { width: '0px' };
       }
     },
 
     animateBars({ going }) {
       if (going === this.$waypointMap.GOING_IN) {
-        console.log('going: ');
         this.shown = true;
       }
     }

@@ -40,7 +40,7 @@ export default {
         PHP: 50,
         Python: 50,
         'c++': 25,
-        'HTML/CSS': 80
+        'HTML/CSS': 65
       },
       fieldExperience: {
         'Front-End': 55,
