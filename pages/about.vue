@@ -52,7 +52,9 @@ export default {
     };
   },
 
-  created() {},
+  mounted() {
+    this.$scrollTo('.about-container');
+  },
 
   methods: {}
 };
