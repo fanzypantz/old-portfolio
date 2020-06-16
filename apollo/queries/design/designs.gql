@@ -11,6 +11,8 @@ query {
     index_image_small {
       url
     }
+    codeLink
+    liveLink
     content
     category {
       name

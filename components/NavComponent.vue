@@ -76,15 +76,15 @@ export default {
     .nav-item
         padding: 0
         background-color: $bg-alternative
-        width: 80px
+        width: 100%
         height: 80px
         margin-bottom: 15px
         transition: background-color 250ms ease
 
         svg
           transition: stroke 250ms ease, fill 250ms ease
-          width: 50px
-          height: 50px
+          width: 40px
+          height: 40px
 
           stroke: white
           fill: white

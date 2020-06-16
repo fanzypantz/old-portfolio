@@ -68,9 +68,28 @@
             v-html="$md.render(removeLinks(design.content))"
             class="content"
           ></div>
-          <button @click.stop="toggleFullScreen(design.id)" class="btn">
-            Open image
-          </button>
+          <div class="design-buttons">
+            <button @click.stop="toggleFullScreen(design.id)" class="btn">
+              Full VIew
+            </button>
+
+            <a
+              @click.stop=""
+              v-if="design.codeLink"
+              :href="design.codeLink"
+              class="btn"
+              target="_blank"
+              >View Code</a
+            >
+            <a
+              @click.stop=""
+              v-if="design.liveLink"
+              :href="design.liveLink"
+              class="btn"
+              target="_blank"
+              >View Live</a
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -400,6 +419,18 @@ $ease-timer: 250ms
     left: 50%
     transform: translateX(-50%)
 
+.design-buttons
+  display: flex
+  width: 100%
+  margin: 0 auto
+  justify-content: center
+  align-items: center
+
+  .btn
+    margin-right: 15px !important
+
+    &:last-child
+      margin-right: 0 !important
 
 @keyframes tracking-in-contract
   0%

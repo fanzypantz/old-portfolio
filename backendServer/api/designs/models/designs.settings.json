@@ -42,6 +42,12 @@
       "via": "related",
       "plugin": "upload",
       "required": true
+    },
+    "codeLink": {
+      "type": "string"
+    },
+    "liveLink": {
+      "type": "string"
     }
   }
 }
