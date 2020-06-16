@@ -6,10 +6,10 @@
       v-if="!showMenu"
     ></Hamburger>
 
-    <nav @click.self="toggleMenu" v-if="showMenu" class="nav-container">
+    <nav @click="toggleMenu" v-if="showMenu" class="nav-container">
       <nuxt-link class="btn nav-item" to="/"><Home></Home></nuxt-link>
       <nuxt-link class="btn nav-item" to="/about"><Person></Person></nuxt-link>
-      <button @click="toggleMenu" class="btn nav-item"><Close></Close></button>
+      <button class="btn nav-item"><Close></Close></button>
     </nav>
   </transition>
 </template>
