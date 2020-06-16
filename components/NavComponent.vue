@@ -1,25 +1,28 @@
 <template>
-  <div class="nav">
+  <transition class="nav" name="nav-fade">
     <Hamburger
       id="mobile-menu"
       @click="toggleMenu"
       v-if="!showMenu"
     ></Hamburger>
 
-    <nav v-if="showMenu" @click.self="toggleMenu" class="nav-container">
-      <nuxt-link class="btn" to="/">Home</nuxt-link>
-      <nuxt-link class="btn" to="/about">About Me</nuxt-link>
-      <button @click="toggleMenu" class="btn">Close</button>
+    <nav @click.self="toggleMenu" v-if="showMenu" class="nav-container">
+      <nuxt-link class="btn nav-item" to="/"><Home></Home></nuxt-link>
+      <nuxt-link class="btn nav-item" to="/about"><Person></Person></nuxt-link>
+      <button @click="toggleMenu" class="btn nav-item"><Close></Close></button>
     </nav>
-  </div>
+  </transition>
 </template>
 
 <script>
 import Hamburger from '~/static/svg/hamburger.svg?inline';
+import Home from '~/static/svg/home.svg?inline';
+import Person from '~/static/svg/person.svg?inline';
+import Close from '~/static/svg/close.svg?inline';
 
 export default {
   name: 'NavComponent',
-  components: { Hamburger },
+  components: { Hamburger, Home, Person, Close },
 
   data() {
     return {
@@ -63,18 +66,51 @@ export default {
     top: 0
     left: 0
     height: 100vh
-    width: 200px
+    width: 80px
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+    transform-origin: left
 
-    .btn
-        background-color: $bg
-        color: $bg-alternative
-        width: 100%
+    .nav-item
+        padding: 0
+        background-color: $bg-alternative
+        width: 80px
+        height: 80px
+        margin-bottom: 15px
+        transition: background-color 250ms ease
+
+        svg
+          transition: stroke 250ms ease, fill 250ms ease
+          width: 50px
+          height: 50px
+
+          stroke: white
+          fill: white
 
         &:hover
-            background-color: $bg-alternative
-            color: $font-colour
+          transform: unset
+          background-color: $hover
+
+          svg
+            stroke: $bg-alternative
+            fill: $bg-alternative
+
+
+.nav-fade-enter-active
+  animation: scale-in .5s
+
+.nav-fade-leave-active
+  animation: scale-in .5s reverse
+
+@keyframes scale-in
+  0%
+    opacity: 0
+    width: 0px
+  50%
+    width: 90px
+  100%
+    opacity: 1
+    width: 80px
 </style>

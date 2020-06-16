@@ -53,7 +53,9 @@ export default {
   },
 
   mounted() {
-    this.$scrollTo('.about-container');
+    setTimeout(() => {
+      this.$scrollTo('.about-container');
+    }, 1000);
   },
 
   methods: {}
