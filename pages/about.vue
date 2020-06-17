@@ -2,6 +2,7 @@
   <div id="first-element" class="about-container">
     <div class="centered-content about-content">
       <ExperienceComponent
+        :isActive="isActive"
         :lang-experience="langExperience"
         :name="'Language Experience'"
       />
@@ -20,6 +21,7 @@
         </p>
       </div>
       <ExperienceComponent
+        :isActive="isActive"
         :lang-experience="fieldExperience"
         :name="'Field Experience'"
       />
@@ -48,17 +50,35 @@ export default {
         '3D Design': 75,
         'Game Development': 50,
         'Video Editing/Compositing': 40
-      }
+      },
+      isActive: false,
+      hasScrolled: false
     };
   },
 
   mounted() {
+    window.addEventListener('scroll', this.handleScroll);
     setTimeout(() => {
-      this.$scrollTo('.about-container');
-    }, 1000);
+      this.isActive = true;
+      if (!this.hasScrolled) {
+        this.$scrollTo('.about-container');
+      }
+    }, 5000);
   },
 
-  methods: {}
+  methods: {
+    handleScroll(event) {
+      if (!this.hasScrolled) {
+        this.hasScrolled = true;
+      }
+    }
+  },
+
+  head() {
+    return {
+      title: 'Andreas Tollånes - About Me'
+    };
+  }
 };
 </script>
 

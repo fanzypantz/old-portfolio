@@ -7,8 +7,12 @@
     ></Hamburger>
 
     <nav @click="toggleMenu" v-if="showMenu" class="nav-container">
-      <nuxt-link class="btn nav-item" to="/"><Home></Home></nuxt-link>
-      <nuxt-link class="btn nav-item" to="/about"><Person></Person></nuxt-link>
+      <button @click="navigate($event, '/')" class="btn nav-item">
+        <Home></Home>
+      </button>
+      <button @click="navigate($event, '/about')" class="btn nav-item">
+        <Person></Person>
+      </button>
       <button class="btn nav-item"><Close></Close></button>
     </nav>
   </transition>
@@ -24,9 +28,17 @@ export default {
   name: 'NavComponent',
   components: { Hamburger, Home, Person, Close },
 
+  props: {
+    togglePageTransition: {
+      type: Function,
+      default: () => {}
+    }
+  },
+
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      delay: 1000
     };
   },
 
@@ -39,6 +51,17 @@ export default {
       if (this.showMenu) {
         this.showMenu = false;
       }
+    },
+
+    navigate(event, route) {
+      event.preventDefault();
+      this.$store.commit('setOpenPage', false);
+      this.$emit('togglePageTransition');
+      setTimeout(() => {
+        this.$router.push({
+          path: route
+        });
+      }, this.delay);
     }
   }
 };

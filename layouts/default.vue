@@ -1,7 +1,7 @@
 <template>
-  <div class="main-container">
-    <div class="main-header">
-      <NavComponent />
+  <transition-group name="page-transition-header" class="main-container">
+    <div v-if="$store.state.openPage" :key="0" class="main-header">
+      <NavComponent @togglePageTransition="togglePageTransition" />
 
       <BlobsComponent />
 
@@ -9,8 +9,8 @@
 
       <HeroComponent />
     </div>
-    <nuxt />
-  </div>
+    <nuxt v-if="$store.state.openPage" :key="1" />
+  </transition-group>
 </template>
 
 <script>
@@ -31,7 +31,8 @@ export default {
   data() {
     return {
       categories: [],
-      showMenu: false
+      showMenu: false,
+      delay: 1000
     };
   },
 
@@ -39,6 +40,18 @@ export default {
     categories: {
       prefetch: true,
       query: categoriesQuery
+    }
+  },
+
+  mounted() {
+    this.$store.commit('setOpenPage', true);
+  },
+
+  methods: {
+    togglePageTransition() {
+      setTimeout(() => {
+        this.$store.commit('setOpenPage', true);
+      }, this.delay);
     }
   },
 
@@ -138,14 +151,66 @@ button, .btn
   transform: translate(-50%, -50%)
 
 .main-header
+  z-index: 2
+  overflow: hidden
   position: relative
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
   height: 100vh
-  margin-bottom: 150px
 
+.bounce-enter-active
+  animation: bounce-in .8s
+
+.bounce-leave-active
+  animation: bounce-out .5s
+
+@keyframes bounce-in
+  0%
+    transform: scale(0)
+  50%
+    transform: scale(1.5)
+  100%
+    transform: scale(1)
+
+@keyframes bounce-out
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.5)
+  100%
+    transform: scale(0)
+
+.page-open-animation
+  animation: page-open 1000ms ease forwards
+
+.page-close-animation
+  animation: page-open 1000ms ease reverse
+
+@keyframes page-open
+  0%
+    opacity: 0
+    max-height: 0px
+  99%
+    max-height: 500vh
+  100%
+    opacity: 1
+    max-height: unset
+
+.page-transition-header-enter-active
+  animation: page-open-header 1000ms ease forwards
+
+.page-transition-header-leave-active
+  animation: page-open-header 1000ms ease reverse
+
+@keyframes page-open-header
+  0%
+    opacity: 0
+    height: 0px
+  100%
+    opacity: 1
+    height: 100vh
 
 @media (max-width: $breakpoint-tablet)
   .main-header

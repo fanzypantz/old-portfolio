@@ -2,7 +2,11 @@
   <div class="experience-container">
     <h2 class="experience-title">{{ name }}</h2>
     <div v-for="(key, lang) in langExperience" class="experience">
-      <ExperienceBarComponent :lang="lang" :percentage="key" />
+      <ExperienceBarComponent
+        :isActive="isActive"
+        :lang="lang"
+        :percentage="key"
+      />
       <p class="language-name">{{ lang }}</p>
     </div>
     <div class="beginner">
@@ -23,6 +27,7 @@ export default {
   name: 'Experience',
   components: { ExperienceBarComponent },
   props: {
+    isActive: { type: Boolean, default: false },
     langExperience: {
       type: Object,
       default() {

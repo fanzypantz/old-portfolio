@@ -82,6 +82,7 @@ export default {
 <style lang="sass">
 .index-container
   position: relative
+  max-height: 0
 
 .design-sort
   width: 100%
@@ -89,8 +90,7 @@ export default {
   justify-content: center
   align-items: center
   flex-wrap: wrap
-  position: absolute
-  top: -140px
+  margin: 40px auto
 
   .sort-button
     color: $bg-alternative
@@ -114,6 +114,8 @@ export default {
     color: $bg-alternative
     text-align: center
     width: 100%
+
+
 
 @media (max-width: $breakpoint-tablet)
 

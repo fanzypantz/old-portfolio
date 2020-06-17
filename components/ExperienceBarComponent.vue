@@ -1,7 +1,6 @@
 <template>
   <div
-    v-waypoint="{ active: true, callback: animateBars }"
-    :style="checkStyle()"
+    :style="{ width: isActive ? percentage + '%' : '0px' }"
     class="experience-bar"
   ></div>
 </template>
@@ -11,6 +10,7 @@ export default {
   name: 'ExperienceBar',
 
   props: {
+    isActive: { type: Boolean, default: false },
     lang: { type: String, default: '' },
     percentage: { type: Number, default: 0 }
   },
@@ -19,22 +19,6 @@ export default {
     return {
       shown: false
     };
-  },
-
-  methods: {
-    checkStyle() {
-      if (this.shown) {
-        return { width: this.percentage + '%' };
-      } else {
-        return { width: '0px' };
-      }
-    },
-
-    animateBars({ going }) {
-      if (going === this.$waypointMap.GOING_IN) {
-        this.shown = true;
-      }
-    }
   }
 };
 </script>

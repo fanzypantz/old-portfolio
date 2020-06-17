@@ -42,7 +42,7 @@
         class="design-container-image"
       >
         <img
-          @load="loadedImage(design.id, index)"
+          @load="loadingImageAnimation(design.id, index)"
           @click="(e) => e.preventDefault()"
           :src="
             getImageSrc(
@@ -123,41 +123,52 @@ export default {
       this.hovering = null;
     },
 
-    loadedImage(id, index) {
-      if (id === this.expanded) {
-        const currentSub = (index + 1) % 4;
-        const elementData = this.designs[index];
-        const clickedElement = this.$refs['design' + elementData.id][0];
-        const image = clickedElement.querySelector('IMG');
-        if (currentSub !== 0) {
-          setTimeout(() => {
-            const aspectRatio = image.naturalWidth / image.naturalHeight;
-            this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+    expandImage(image, clickedElement) {
+      // Wait for css animation to finish before getting image width
+      setTimeout(() => {
+        const aspectRatio = image.naturalWidth / image.naturalHeight;
+        this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
 
-            setTimeout(() => {
-              if (this.designHeight > window.innerHeight) {
-                clickedElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              } else {
-                clickedElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-              }
-            }, this.timeOut);
-          }, this.timeOut);
-        } else {
-          const aspectRatio = image.naturalWidth / image.naturalHeight;
-          this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
-          setTimeout(() => {
+        setTimeout(() => {
+          if (this.designHeight > window.innerHeight) {
             clickedElement.scrollIntoView({
               behavior: 'smooth',
-              block: 'center'
+              block: 'start'
             });
-          }, this.timeOut);
-        }
+            return;
+          }
+          clickedElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }, this.timeOut);
+      }, this.timeOut);
+    },
+
+    expandImageLarge(image, clickedElement) {
+      // If its a large image there is no need to wait before getting the width
+      const aspectRatio = image.naturalWidth / image.naturalHeight;
+      this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
+      setTimeout(() => {
+        clickedElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, this.timeOut);
+    },
+
+    loadingImageAnimation(id, index) {
+      if (id !== this.expanded) {
+        return;
+      }
+      const currentSub = (index + 1) % 4;
+      const elementData = this.designs[index];
+      const clickedElement = this.$refs['design' + elementData.id][0];
+      const image = clickedElement.querySelector('IMG');
+      if (currentSub !== 0) {
+        this.expandImage(image, clickedElement);
+      } else {
+        this.expandImageLarge(image, clickedElement);
       }
     },
 
@@ -208,77 +219,85 @@ export default {
       const elementData = this.designs[index];
       const currentSub = (index + 1) % 4;
       if (this.expanded === null) {
-        // If its not the third index or the first entry
-        if (currentSub !== 0 && window.innerWidth > 768) {
-          // Based on the result of the mod calculation you are one
-          // out of three columns in the row, they need their own logic
-          switch (currentSub) {
-            case 3:
-              this.collapsedElements.push(this.designs[index - 1].id);
-              this.collapsedElements.push(this.designs[index - 2].id);
-              break;
-            case 2:
-              if (this.designs[index + 1] !== undefined) {
-                this.collapsedElements.push(this.designs[index + 1].id);
-              }
-              this.collapsedElements.push(this.designs[index - 1].id);
-              break;
-            default:
-              if (this.designs[index + 1] !== undefined) {
-                this.collapsedElements.push(this.designs[index + 1].id);
-              }
-              if (this.designs[index + 2] !== undefined) {
-                this.collapsedElements.push(this.designs[index + 2].id);
-              }
-              break;
-          }
-          this.expanded = elementData.id;
-        } else {
-          this.expanded = elementData.id;
-        }
+        this.openDesign(currentSub, index, elementData);
       } else {
-        // If its already open close then call this function again
-        // eslint-disable-next-line no-lonely-if
-        const clickedElement = this.$refs['design' + elementData.id][0];
-        if (this.expanded === elementData.id) {
-          this.designHeight = null;
-          // Delay until the height has been closed
-          setTimeout(() => {
-            this.expanded = null;
-            this.collapsedElements = [];
-            // If not full width column delay once more
-            if (currentSub !== 0) {
-              setTimeout(() => {
-                clickedElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
-              }, this.timeOut);
-            } else {
+        this.closeDesign(e, currentSub, index, elementData);
+      }
+    },
+
+    openDesign(currentSub, index, elementData) {
+      // If its not the third index or the first entry
+      if (currentSub !== 0 && window.innerWidth > 768) {
+        // Based on the result of the mod calculation you are one
+        // out of three columns in the row, they need their own logic
+        switch (currentSub) {
+          case 3:
+            this.collapsedElements.push(this.designs[index - 1].id);
+            this.collapsedElements.push(this.designs[index - 2].id);
+            break;
+          case 2:
+            if (this.designs[index + 1] !== undefined) {
+              this.collapsedElements.push(this.designs[index + 1].id);
+            }
+            this.collapsedElements.push(this.designs[index - 1].id);
+            break;
+          default:
+            if (this.designs[index + 1] !== undefined) {
+              this.collapsedElements.push(this.designs[index + 1].id);
+            }
+            if (this.designs[index + 2] !== undefined) {
+              this.collapsedElements.push(this.designs[index + 2].id);
+            }
+            break;
+        }
+        this.expanded = elementData.id;
+      } else {
+        this.expanded = elementData.id;
+      }
+    },
+
+    closeDesign(e, currentSub, index, elementData) {
+      // If its already open close then call this function again
+      const clickedElement = this.$refs['design' + elementData.id][0];
+      if (this.expanded === elementData.id) {
+        this.designHeight = null;
+        // Delay until the height has been closed
+        setTimeout(() => {
+          this.expanded = null;
+          this.collapsedElements = [];
+          // If not full width column delay once more
+          if (currentSub !== 0) {
+            setTimeout(() => {
               clickedElement.scrollIntoView({
                 behavior: 'smooth',
                 block: 'center'
               });
-            }
+            }, this.timeOut);
+            return;
+          }
+          clickedElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }, this.timeOut);
+        return;
+      }
+
+      this.designHeight = null;
+      // Delay until height has been closed
+      setTimeout(() => {
+        this.expanded = null;
+        this.collapsedElements = [];
+        // Call the function again to open the new one
+        // If not full width column delay once more
+        if (currentSub === 0) {
+          setTimeout(() => {
+            this.toggleDesignView(e, index);
           }, this.timeOut);
         } else {
-          this.designHeight = null;
-          // Delay until height has been closed
-          setTimeout(() => {
-            this.expanded = null;
-            this.collapsedElements = [];
-            // Call the function again to open the new one
-            // If not full width column delay once more
-            if (currentSub === 0) {
-              setTimeout(() => {
-                this.toggleDesignView(e, index);
-              }, this.timeOut);
-            } else {
-              this.toggleDesignView(e, index);
-            }
-          }, this.timeOut);
+          this.toggleDesignView(e, index);
         }
-      }
+      }, this.timeOut);
     }
   }
 };
