@@ -130,7 +130,6 @@ export default {
         this.designHeight = (window.innerWidth * 0.8) / aspectRatio;
 
         setTimeout(() => {
-          console.log('designHeight: ', this.designHeight);
           if (this.designHeight > window.innerHeight) {
             clickedElement.scrollIntoView({
               behavior: 'smooth',
@@ -449,10 +448,22 @@ $ease-timer: 250ms
     opacity: 1
 
 @media (min-width: $breakpoint-tablet)
-  .list-complete-enter, .list-complete-leave-to
-    width: 0 !important
-    opacity: 0 !important
-    margin: 0 !important
+  .list-complete-enter-active
+    transform-origin: center
+    animation: list-complete-anim $ease-timer ease forwards
+
+  .list-complete-leave-active
+    transform-origin: center
+    animation: list-complete-anim $ease-timer ease backwards
+
+
+  @keyframes list-complete-anim
+    0%
+      opacity: 0
+      transform: scale(0)
+    100%
+      opacity: 1
+      transform: scale(1)
 
 @media (max-width: $breakpoint-tablet)
 
