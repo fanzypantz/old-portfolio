@@ -84,7 +84,7 @@ export default {
     animation: blob-animation 1s ease 3.4s forwards, float-2 12s ease 4.4s infinite
 
     path
-        fill: $bg-secondary-dark
+        fill: $bg-alternative-light
 
 .blob2
     top: 37%
@@ -108,7 +108,7 @@ export default {
     animation: blob-animation 1s ease 3s forwards, float 12s ease 4s infinite
 
     path
-        fill: $bg-secondary
+        fill: $bg-alternative
 
 .blob5
     top: -5%
@@ -124,7 +124,7 @@ export default {
     animation: blob-animation 1s ease 3.2s forwards, float 12s ease 4.2s infinite
 
     path
-        fill: $bg-secondary-dark
+        fill: $bg
 
 @keyframes blob-animation
     0%

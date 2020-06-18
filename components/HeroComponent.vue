@@ -28,12 +28,15 @@ export default {
   padding-left: 0
   z-index: 2
   animation: border-fade 0.4s ease 3s forwards
+  mix-blend-mode: color-dodge
+
 
   .hero
     opacity: 0
     font-size: 4rem
     font-weight: 300
     font-family: $font-family
+
 
   .hero01
     animation: hero-text 1s ease 1.7s forwards
@@ -80,7 +83,11 @@ export default {
         @error "decimal: `#{$v}` is not a percent"
     @return $v / 100%
 
+@media (max-width: $breakpoint-laptop-L)
 
+  .hero-container
+    mix-blend-mode: color-dodge
+    -webkit-font-smoothing: antialiased
 
 
 @media (max-height: $breakpoint-tablet-height)
