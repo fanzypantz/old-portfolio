@@ -55,6 +55,9 @@ export default {
 
     navigate(event, route) {
       event.preventDefault();
+      if (route === this.$route.path) {
+        return;
+      }
       this.$store.commit('setOpenPage', false);
       this.$emit('togglePageTransition');
       setTimeout(() => {

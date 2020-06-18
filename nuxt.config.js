@@ -79,7 +79,11 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:3000',
+    credentials: true,
+    debug: true
+  },
 
   apollo: {
     cookieAttributes: {
@@ -99,6 +103,9 @@ export default {
     breaks: true,
     injected: true
   },
+
+  serverMiddleware: [{ path: '~/api', handler: '~/clientServer/index.js' }],
+
   /*
    ** Build configuration
    */

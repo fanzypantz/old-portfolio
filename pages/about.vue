@@ -1,39 +1,47 @@
 <template>
-  <div id="first-element" class="about-container">
-    <div class="centered-content about-content">
-      <ExperienceComponent
-        :isActive="isActive"
-        :lang-experience="langExperience"
-        :name="'Language Experience'"
-      />
-      <div class="about-description">
-        <p>
-          I'm a newly educated front-end developer that has a passion for the
-          creative arts.
-        </p>
-        <p>
-          I create experiences and amazing visuals in everything from web design
-          to game development.
-        </p>
-        <p>
-          My specializations are in front-end development and design plus CGi
-          architectural visualizations.
-        </p>
+  <div>
+    <div id="first-element" class="about-container">
+      <div class="centered-content about-content">
+        <ExperienceComponent
+          :isActive="isActive"
+          :lang-experience="langExperience"
+          :name="'Language Experience'"
+        />
+        <div class="about-description">
+          <p>
+            I'm a newly educated front-end developer that has a passion for the
+            creative arts.
+          </p>
+          <p>
+            I create experiences and amazing visuals in everything from web
+            design to game development.
+          </p>
+          <p>
+            My specializations are in front-end development and design plus CGi
+            architectural visualizations.
+          </p>
+        </div>
+        <ExperienceComponent
+          :isActive="isActive"
+          :lang-experience="fieldExperience"
+          :name="'Field Experience'"
+        />
       </div>
-      <ExperienceComponent
-        :isActive="isActive"
-        :lang-experience="fieldExperience"
-        :name="'Field Experience'"
-      />
+    </div>
+    <div class="about-container">
+      <div class="centered-content about-content">
+        <MailComponent></MailComponent>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import ExperienceComponent from '../components/ExperienceComponent';
+import MailComponent from '../components/MailComponent';
 
 export default {
-  components: { ExperienceComponent },
+  components: { ExperienceComponent, MailComponent },
 
   data() {
     return {
