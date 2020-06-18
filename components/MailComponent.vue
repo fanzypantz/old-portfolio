@@ -30,14 +30,20 @@
     <p v-if="errors.backend" class="error">
       {{ errors.backend }}
     </p>
+    <transition name="thanks-transition"
+      ><Hearth v-if="showThanks" class="thanks"></Hearth
+    ></transition>
   </form>
 </template>
 
 <script>
 import axios from 'axios';
+import Hearth from '~/static/svg/hearth.svg?inline';
 
 export default {
   name: 'MailComponent',
+
+  components: { Hearth },
 
   data() {
     return {
@@ -45,7 +51,8 @@ export default {
       url: 'http://localhost:3000/api/contact',
       name: '',
       email: '',
-      message: ''
+      message: '',
+      showThanks: false
     };
   },
 
@@ -71,9 +78,14 @@ export default {
           msg: this.message
         });
         if (response.data.success) {
-          this.name = '';
-          this.email = '';
-          this.message = '';
+          this.showThanks = true;
+          // Delay the removal until animation has played
+          setTimeout(() => {
+            this.name = '';
+            this.email = '';
+            this.message = '';
+            this.showThanks = false;
+          }, 1100);
         } else {
           this.errors.backend = 'Something happened, please try again.';
         }
@@ -91,6 +103,7 @@ export default {
 
 <style lang="sass">
 .mail-form
+  position: relative
   width: 500px
   height: 300px
 
@@ -114,6 +127,8 @@ export default {
     border-radius: 0
     padding-left: 20px
     box-sizing: border-box
+    font-size: 14px
+    font-family: $font-family
 
     &:focus
       outline: none
@@ -132,11 +147,47 @@ export default {
     padding: 20px
     box-sizing: border-box
     width: 100%
+    font-size: 14px
+    font-family: $font-family
+
 
     &:focus
       outline: none
       border: none
       border-bottom: 2px solid $bg-alternative
+
+
+.thanks
+  width: 200px
+  height: 200px
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  pointer-events: none
+
+.thanks-transition-enter-active
+  animation: roll-in-bottom 1000ms ease forwards
+
+.thanks-transition-leave-active
+  animation: roll-in-bottom 1000ms ease reverse
+
+
+@keyframes roll-in-bottom
+  0%
+    top: 200%
+    transform: translate(-50%, -50%) rotate(540deg)
+    opacity: 0
+
+  80%
+    top: 30%
+    transform: translate(-50%, -50%) rotate(-10deg)
+
+  100%
+    top: 50%
+    transform: translate(-50%, -50%) rotate(0deg)
+    opacity: 1
+
 
 @media (max-width: $breakpoint-tablet)
   .centered-content
