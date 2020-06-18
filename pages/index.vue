@@ -25,6 +25,14 @@
     </div>
 
     <DesignsComponent
+      v-if="renderDesigns.length > 0"
+      v-for="n in Math.ceil(renderDesigns.length / 7)"
+      :designs="renderDesigns.slice(7 * n - 7, 7 * n)"
+      :key="n"
+    />
+
+    <DesignsComponent
+      v-if="renderDesigns.length === 0"
       v-for="n in Math.ceil(designs.length / 7)"
       :designs="designs.slice(7 * n - 7, 7 * n)"
       :key="n"
@@ -45,23 +53,23 @@ export default {
     return {
       designs: [],
       currentType: null,
-      designsBackup: null
+      renderDesigns: []
     };
   },
 
-  created() {
-    this.designsBackup = this.designs;
+  mounted() {
+    this.renderDesigns = this.designs;
   },
 
   methods: {
     sortDesigns(type) {
       if (type && (this.currentType === null || this.currentType !== type)) {
         this.currentType = type;
-        this.designs = this.designsBackup.filter(
+        this.renderDesigns = this.designs.filter(
           (design) => design.category.name === type
         );
       } else {
-        this.designs = this.designsBackup;
+        this.renderDesigns = this.designs;
         this.currentType = null;
       }
     }

@@ -94,4 +94,21 @@ export default {
   bottom: 0
   right: 0
   transform: translate(calc(50% - 2px), 100%)
+
+@media (max-width: 1500px)
+
+  .experience-container
+    width: 250px
+
+@media (max-width: 1260px)
+  .experience-container
+    width: 100%
+
+
+@media (max-width: $breakpoint-tablet)
+  .beginner p
+    transform: translateX(50%)
+
+  .master p
+    transform: translateX(-50%)
 </style>

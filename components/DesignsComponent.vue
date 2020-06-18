@@ -490,6 +490,13 @@ $ease-timer: 250ms
     opacity: 0 !important
     margin: 0 !important
 
+  .design-buttons
+    flex-direction: column
+
+    .btn
+      width: 100% !important
+      margin-right: 0 !important
+
 @media (max-width: $breakpoint-mobile-L)
 
   .design-container

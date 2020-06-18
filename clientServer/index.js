@@ -23,7 +23,7 @@ app.post('/', function(req, res) {
   }
 
   sendMail(...sanitizedAttributes);
-  res.status(200).json({ message: 'Message Sent' });
+  res.status(200).json({ success: true, message: 'Message Sent' });
 });
 module.exports = {
   path: '/api/contact',

@@ -104,4 +104,21 @@ export default {
       font-size: 2em
     .hero-text
       font-size: 1em
+
+@media (max-width: $breakpoint-mobile-L)
+
+  @keyframes border-fade
+    0%
+      padding-left: 0
+      border-left: 0 solid $bg-alternative
+
+    100%
+      padding-left: 10px
+      border-left: 4px solid $bg-alternative
+
+
+@media (max-width: $breakpoint-mobile-M)
+
+  .hero-container
+    left: 0
 </style>

@@ -76,6 +76,11 @@ html
   -webkit-font-smoothing: antialiased
   box-sizing: border-box
 
+body
+  overflow-x: hidden
+  display: block
+  max-width: 100vw
+
 h1, h2, h3, h4, h5
   font-family: orator-std, monospace
 
@@ -140,8 +145,9 @@ button, .btn
     filter: invert(100)
 
 .main-container
+  display: block
   width: 100%
-  overflow-x: hidden
+  max-width: 100vw
   position: relative
 
 .centered-content
@@ -152,13 +158,13 @@ button, .btn
 
 .main-header
   z-index: 2
-  overflow: hidden
   position: relative
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
   height: 100vh
+  max-width: 100vw
 
 .bounce-enter-active
   animation: bounce-in .8s

@@ -29,7 +29,8 @@
       </div>
     </div>
     <div class="about-container">
-      <div class="centered-content about-content">
+      <div class="centered-content">
+        <h2 class="contact-title">Get in touch!</h2>
         <MailComponent></MailComponent>
       </div>
     </div>
@@ -113,4 +114,44 @@ export default {
     font-size: 16px
     text-align: center
     color: $bg-alternative
+
+.contact-title
+  text-align: center
+
+@media (max-width: 1260px)
+
+  .about-content
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+  .about-description
+    margin: 90px auto 50px auto
+    padding: 0 20px
+
+    p
+      margin: 5px 0
+
+@media (max-width: $breakpoint-tablet)
+
+  .about-container
+    width: 60%
+    margin: 0 auto
+
+  .about-content
+    width: 100%
+
+  .about-description
+    width: 100%
+    box-sizing: border-box
+
+@media (max-width: $breakpoint-mobile-L)
+
+  .about-container
+    width: 80%
+
+@media (max-width: $breakpoint-mobile-M)
+
+  .about-container
+    width: 90%
 </style>

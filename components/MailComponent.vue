@@ -1,19 +1,35 @@
 <template>
-  <form @submit="sendMail" method="post">
-    {{ errors }}
+  <form @submit="sendMail" class="mail-form" method="post">
     <div class="form-group">
       <label for="name">Name</label>
-      <input id="name" v-model="name" type="text" minlength="4" />
+      <input
+        id="name"
+        v-model="name"
+        type="text"
+        minlength="4"
+        placeholder="Your Name"
+      />
+      <p v-if="errors.name" class="error">{{ errors.name }}</p>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input id="email" v-model="email" type="email" />
+      <input id="email" v-model="email" type="email" placeholder="Your Email" />
+      <p v-if="errors.email" class="error">{{ errors.email }}</p>
     </div>
     <div class="form-group">
       <label for="message">Message</label>
-      <textarea id="message" v-model="message" minlength="4"></textarea>
+      <textarea
+        id="message"
+        v-model="message"
+        minlength="4"
+        placeholder="Message"
+      ></textarea>
+      <p v-if="errors.message" class="error">{{ errors.message }}</p>
     </div>
-    <button type="submit">Send</button>
+    <button class="mail-submit" type="submit">Send</button>
+    <p v-if="errors.backend" class="error">
+      {{ errors.backend }}
+    </p>
   </form>
 </template>
 
@@ -54,8 +70,14 @@ export default {
           email: this.email,
           msg: this.message
         });
+        if (response.data.success) {
+          this.name = '';
+          this.email = '';
+          this.message = '';
+        } else {
+          this.errors.backend = 'Something happened, please try again.';
+        }
       }
-      console.log('errors: ', this.errors);
     },
 
     validateEmail(email) {
@@ -68,11 +90,58 @@ export default {
 </script>
 
 <style lang="sass">
-.experience-bar
-  position: absolute
-  top: 0
-  left: 0
-  height: 100%
-  background-color: $bg-alternative-light
-  transition: width 1s ease-in-out 1s
+.mail-form
+  width: 500px
+  height: 300px
+
+.mail-submit
+  margin-top: 10px
+
+.form-group
+  display: flex
+  flex-direction: column
+
+  .error
+    margin-top: 5px
+    color: darkred
+
+  input[type=text],
+  input[type=email]
+    width: 100%
+    height: 40px
+    border: none
+    border-bottom: 2px solid $bg-alternative-light
+    border-radius: 0
+    padding-left: 20px
+    box-sizing: border-box
+
+    &:focus
+      outline: none
+      border: none
+      border-bottom: 2px solid $bg-alternative
+
+
+  label
+    width: 100%
+    font-size: 1.2em
+    margin: 10px 0
+
+  textarea
+    border: none
+    border-bottom: 2px solid $bg-alternative-light
+    padding: 20px
+    box-sizing: border-box
+    width: 100%
+
+    &:focus
+      outline: none
+      border: none
+      border-bottom: 2px solid $bg-alternative
+
+@media (max-width: $breakpoint-tablet)
+  .centered-content
+    width: 100%
+
+  .mail-form
+    width: 100%
 </style>
