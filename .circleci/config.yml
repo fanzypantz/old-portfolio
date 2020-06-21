@@ -1,18 +1,12 @@
 jobs:
   install-node:
     docker:
-      - image: 'cimg/base:stable'
+      - image: 'node:12.2.0-alpine'
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-          node-version: latest
-      - run: node --version
       - run: yarn install
-orbs:
-  node: circleci/node@1.1.6
 version: 2.1
 workflows:
-  test_my_app:
+  create_environment:
     jobs:
       - install-node
