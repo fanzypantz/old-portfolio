@@ -1,6 +1,5 @@
 jobs:
   install-node:
-    working_directory: ~/app
     docker:
       - image: 'node:alpine'
     steps:
