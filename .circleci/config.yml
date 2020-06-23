@@ -9,8 +9,8 @@ jobs:
         name: Install Dependencies
         command: cd app; yarn
       - run:
-          name: Build App
-          command: yarn build
+        name: Build App
+        command: yarn build
 version: 2.1
 workflows:
   build:
