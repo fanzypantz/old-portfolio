@@ -1,13 +1,18 @@
 jobs:
-  install-node:
+  build:
     working_directory: ~/app
     docker:
       - image: 'node:alpine'
     steps:
       - checkout
-      - run: cd app; yarn
+      - run:
+        name: Install Dependencies
+        command: cd app; yarn
+      - run:
+          name: Build App
+          command: yarn build
 version: 2.1
 workflows:
-  create_environment:
+  build:
     jobs:
       - install-node
