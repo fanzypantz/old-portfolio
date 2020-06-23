@@ -12,3 +12,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json
 RUN yarn
 RUN yarn build
+
+# start app
+CMD ["yarn", "start"]
