@@ -13,6 +13,6 @@ jobs:
         command: yarn build
 version: 2.1
 workflows:
-  build:
+  create_docker_image:
     jobs:
-      - install-node
+      - build
