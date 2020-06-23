@@ -14,7 +14,7 @@ jobs:
           command: docker build -t personal-portfolio:latest .
   publish-latest:
     docker:
-      - image: 'circleci/buildpack-deps:stretch'
+      - image: circleci/buildpack-deps:stretch
     steps:
       - setup_remote_docker
       - run:
@@ -27,12 +27,12 @@ workflows:
   build-master:
     jobs:
       - build:
-        filters:
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
       - publish-latest:
-        requires:
-          - build
-        filters:
-          branches:
-            only: master
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
