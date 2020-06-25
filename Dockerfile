@@ -16,5 +16,8 @@ RUN yarn --silent
 COPY . /app
 RUN yarn build
 
+# make sure there is an .env file
+COPY .env.example /app/.env
+
 # start app
 CMD ["yarn", "start"]
