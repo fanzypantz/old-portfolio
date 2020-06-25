@@ -1,7 +1,7 @@
 # base image
 FROM node:alpine
 ENV HOST 0.0.0.0
-ENV BACKEND_URL https://0.0.0.0:1337/graphql
+ENV BACKEND_URL http://127.0.0.1:1337/graphql
 
 # set working directory
 WORKDIR /app

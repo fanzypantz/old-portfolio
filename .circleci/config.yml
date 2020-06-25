@@ -32,9 +32,6 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - run:
-          name: Test
-          command: ls
-      - run:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
