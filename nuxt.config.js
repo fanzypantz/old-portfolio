@@ -90,7 +90,7 @@ export default {
 
   apollo: {
     cookieAttributes: {
-      secure: true
+      secure: process.env.USE_SSL || false
     },
 
     clientConfigs: {
