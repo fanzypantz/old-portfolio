@@ -2,7 +2,7 @@
 FROM node:alpine
 ENV HOST 0.0.0.0
 ENV BACKEND_URL http://0.0.0.0:1337/graphql
-ENV USE_SSL = 'false'
+ENV USE_SSL = 'true'
 
 # set working directory
 WORKDIR /app
