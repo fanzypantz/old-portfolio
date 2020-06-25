@@ -11,8 +11,10 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN yarn --silent
-RUN yarn build
+
+# copy everything to build the app
 COPY . /app
+RUN yarn build
 
 # start app
 CMD ["yarn", "start"]
