@@ -1,7 +1,7 @@
 # base image
 FROM node:alpine
 ENV HOST 0.0.0.0
-ENV BACKEND_URL http://0.0.0.0:1337/graphql
+ENV BACKEND_URL https://andreas-tollanes.com/graphql
 ENV USE_SSL = true
 
 # set working directory
