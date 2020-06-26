@@ -74,10 +74,10 @@ export default {
     '@nuxtjs/svg'
   ],
 
-  // proxy: [
-  //   // Proxies /foo to http://example.com/foo
-  //   'http://localhost:1337/graphql'
-  // ],
+  proxy: [
+    // Proxies /foo to http://example.com/foo
+    'http://localhost:1337/graphql'
+  ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
