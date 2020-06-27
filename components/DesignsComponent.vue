@@ -15,6 +15,10 @@
         height: getHeight(design.id)
       }"
     >
+      <SpinnerComponent
+        class="spinner"
+        v-if="loadingImage && expanded === design.id"
+      />
       <transition name="fade">
         <div
           v-if="expanded !== design.id && hovering === design.id"
@@ -97,7 +101,13 @@
 </template>
 
 <script>
+import SpinnerComponent from '../components/SpinnerComponent';
+
 export default {
+  components: {
+    SpinnerComponent
+  },
+
   props: {
     // eslint-disable-next-line vue/require-default-prop
     designs: Array
@@ -110,7 +120,8 @@ export default {
       collapsedElements: [],
       timeOut: 250,
       fullScreenImage: null,
-      hovering: null
+      hovering: null,
+      loadingImage: false
     };
   },
 
@@ -154,6 +165,7 @@ export default {
       const clickedElement = this.$refs['design' + elementData.id][0];
       const image = clickedElement.querySelector('IMG');
 
+      this.loadingImage = false;
       this.expandImage(image, clickedElement);
     },
 
@@ -219,6 +231,7 @@ export default {
 
     openDesign(currentSub, index, elementData) {
       return new Promise((resolve) => {
+        this.loadingImage = true;
         // If its not the third index or the first entry
         if (currentSub !== 0 && window.innerWidth > 768) {
           // Based on the result of the mod calculation you are one
@@ -434,6 +447,13 @@ $ease-timer: 250ms
 
     &:last-child
       margin-right: 0 !important
+
+.spinner
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  z-index: 200
 
 @keyframes tracking-in-contract
   0%
