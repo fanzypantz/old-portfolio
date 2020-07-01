@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       errors: {},
-      url: 'http://localhost:3000/api/contact',
+      url: 'https://andreas-tollanes.com/api/contact',
       name: '',
       email: '',
       message: '',
