@@ -1,6 +1,4 @@
-# personalPortfolio
-
-> My personal portfolio
+# This app is what is driving my personal portfolio website
 
 ## Build Setup
 
